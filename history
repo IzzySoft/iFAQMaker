@@ -9,6 +9,7 @@ v0.1.1
 * some changes to the sample template to allow "overloading" of the default.css
   on top of another (site-specific) one without the nasty side-effect on the
   "back" and "index" navigator background table
++ HTML header can now optionally be switched off
 
 v0.1.0 (17.11.2004)
 -------------------

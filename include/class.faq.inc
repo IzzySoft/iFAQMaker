@@ -35,13 +35,32 @@ class faq {
   */
  function faq($dir,$file,$toc="") {
   $this->version = "0.1.0";
+  $this->headerSwitch(TRUE);
   $this->t = new Template($dir);
   $this->t->set_file(array("main"=>"$file"));
   $this->t->set_block("main","titleblock","titlelist");
   $this->t->set_block("titleblock","textblock","textlist");
   $this->t->set_block("main","tocblock","toclist");
+  $this->img->logo = "islogo.gif";
+  $this->img->w3c  = "w3c.jpg";
   $this->toc = $toc;
   $this->toclist = "";
+ }
+
+ /** switch the page header on/off
+  * @method public headerSwitch
+  * @param boolean on Whether the header should be generated
+  */
+ function headerSwitch($on) {
+   $this->headerState = $on;
+ }
+
+ /** check whether the header should be generated
+  * @method public headerState
+  * @return boolean on
+  */
+ function headerState() {
+   return $this->headerState;
  }
 
  /** Read the input file
@@ -191,19 +210,21 @@ class faq {
     case 1 : $this->t->parse("titlelist","titleblock"); break;
     default: $this->t->parse("titlelist","titleblock",TRUE);
   }
-  header("Content-type: text/html; charset=$charset");
-  echo "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>\n";
-  echo "<HTML><HEAD>\n <TITLE>$title</TITLE>\n"
-     . " <META HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=$charset'>\n";
-  if (is_array($css)) {
-    $cc = count ($css);
-    for ($i=0;$i<$cc;++$i) {
-      echo  " <LINK HREF='$css[$i]' REL='stylesheet' TYPE='text/css'>\n";
+  if ($this->headerState()) {
+    header("Content-type: text/html; charset=$charset");
+    echo "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>\n";
+    echo "<HTML><HEAD>\n <TITLE>$title</TITLE>\n"
+       . " <META HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=$charset'>\n";
+    if (is_array($css)) {
+      $cc = count ($css);
+      for ($i=0;$i<$cc;++$i) {
+        echo  " <LINK HREF='$css[$i]' REL='stylesheet' TYPE='text/css'>\n";
+      }
+    } else {
+      echo  " <LINK HREF='$css' REL='stylesheet' TYPE='text/css'>\n";
     }
-  } else {
-    echo  " <LINK HREF='$css' REL='stylesheet' TYPE='text/css'>\n";
+    echo "</HEAD><BODY>\n";
   }
-  echo "</HEAD><BODY>\n";
   $this->t->pparse("out","main");
   $this->footer();
  }
@@ -219,14 +240,14 @@ class faq {
 
  function footer() {
    echo '<DIV ALIGN="center" STYLE="margin-top:7px;margin-bottom:7px;">'
-      . '<IMG SRC="w3c.jpg" ALT="w3c" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-right:3px">'
+      . '<IMG SRC="'.$this->img->w3c.'" ALT="w3c" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-right:3px">'
       . '<SPAN CLASS="footer">Created by <A HREF="http://www.qumran.org/homes/izzy/software/faqmaker/" '
       . 'TARGET="_blank">iFAQMaker</A> v'.$this->version
       . ' &copy; 2004 by <A STYLE="text-decoration:none" '
       . 'HREF="http://www.qumran.org/homes/izzy/" TARGET="_blank">Itzchak Rehberg</A> '
       . '&amp; <A STYLE="text-decoration:none" HREF="http://www.izzysoft.de" '
       . 'TARGET="_blank">IzzySoft</A></SPAN>'
-      . '<IMG SRC="islogo.gif" ALT="IzzySoft" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-left:3px"></DIV>';
+      . '<IMG SRC="'.$this->img->logo.'" ALT="IzzySoft" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-left:3px"></DIV>';
  }
 
 /** Type of the TOC: "ol", "ul" or "" (no TOC)
