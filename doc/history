@@ -3,7 +3,7 @@ $Id$
 History for iFAQMaker
 =====================
 
-v0.1.1
+v0.1.1 (25.11.2004)
 -------------------
 ! fixed a litte HTML 4.01 compatibily issue
 * some changes to the sample template to allow "overloading" of the default.css
