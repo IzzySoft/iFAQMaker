@@ -222,7 +222,7 @@ class faq {
       . '<IMG SRC="w3c.jpg" ALT="w3c" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-right:3px">'
       . '<SPAN CLASS="footer">Created by <A HREF="http://www.qumran.org/homes/izzy/software/faqmaker/" '
       . 'TARGET="_blank">iFAQMaker</A> v'.$this->version
-      . ' &copy; 2003-2004 by <A STYLE="text-decoration:none" '
+      . ' &copy; 2004 by <A STYLE="text-decoration:none" '
       . 'HREF="http://www.qumran.org/homes/izzy/" TARGET="_blank">Itzchak Rehberg</A> '
       . '&amp; <A STYLE="text-decoration:none" HREF="http://www.izzysoft.de" '
       . 'TARGET="_blank">IzzySoft</A></SPAN>'
