@@ -12,6 +12,8 @@ v0.1.1
 + outsourced the HTML header/footer methods to an "extension class" - this
   allows creating of "page parts" to include into another page without creating
   the HTML header/footer (and without the overhead of unneeded methods)
++ now the "tocblock" in templates is optional (specify "0" as tocstyle if it
+  is missing in the template)
 
 v0.1.0 (17.11.2004)
 -------------------

@@ -31,7 +31,8 @@ class faq {
   * @constructor faq
   * @param string tpl_dir Directory containing the HTML template files
   * @param string tpl_file Filename of the template file to use
-  * @param string toc style of the "table of contents" (ul|ol), empty for no toc
+  * @param mixed toc style of the "table of contents" (ul|ol), empty for no toc
+  *  If the "tocblock" is not defined in your template at all, specify "0" here
   */
  function faq($dir,$file,$toc="") {
   $this->version = "0.1.1";
@@ -39,7 +40,8 @@ class faq {
   $this->t->set_file(array("main"=>"$file"));
   $this->t->set_block("main","titleblock","titlelist");
   $this->t->set_block("titleblock","textblock","textlist");
-  $this->t->set_block("main","tocblock","toclist");
+  if ($toc!==0)
+    $this->t->set_block("main","tocblock","toclist");
   $this->img->logo = "islogo.gif";
   $this->img->w3c  = "w3c.jpg";
   $this->toc = $toc;
