@@ -220,7 +220,7 @@ class faq {
  function footer() {
    echo '<DIV ALIGN="center" STYLE="margin-top:7px;margin-bottom:7px;">'
       . '<IMG SRC="w3c.jpg" ALT="w3c" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-right:3px">'
-      . '<SPAN CLASS="footer" ALIGN="middle">Created by <A HREF="http://www.qumran.org/homes/izzy/software/faqmaker/" '
+      . '<SPAN CLASS="footer">Created by <A HREF="http://www.qumran.org/homes/izzy/software/faqmaker/" '
       . 'TARGET="_blank">iFAQMaker</A> v'.$this->version
       . ' &copy; 2003-2004 by <A STYLE="text-decoration:none" '
       . 'HREF="http://www.qumran.org/homes/izzy/" TARGET="_blank">Itzchak Rehberg</A> '
