@@ -4,11 +4,16 @@ BODY {
  margin: 0;
  background-color: #69f;
 }
+
 A { text-decoration:none; background: #ddf; color: #009; }
-A:link{ text-decoration:none }
-A:visited{ text-decoration:none }
-A:active{ text-decoration:none }
+A:link, A:visited, A:active { text-decoration:none }
+A:active { background: #ff0; }
+A:link { background: #ddf; }
+A:hover { background: #aaf; }
+A.toc { background: transparent; }
 .tablink { color: #000000; }
+.footer a { background: transparent; color:#00f; }
+
 TABLE { background-color: #fff; }
 .navtable { background-color: #69f; }
 H2 { color: #0000ff; }
@@ -25,7 +30,8 @@ TH.help1 { background-color: #ff0; font-size: 14px; }
 TH.help2 { background-color: #ff9; font-size: 13px; }
 TH.help3 { background-color: #ffc; font-size: 12px; }
 TD.help1  { background-color: #f6f6f6; }
-TD { font-size: 12px; }
+TD { font-size: 12px; background-color: #fff; }
+
 P { margin-top:0; margin-bottom:0; }
 CODE { font-size: 12px; font-family: monospace; color: #603; }
 
@@ -39,22 +45,10 @@ CODE { font-size: 12px; font-family: monospace; color: #603; }
  padding: 4px;
  color: #660033;
 }
-a:active {
- background: #ff0;
-}
-a:link {
- text-decoration: none;
- background: #ddf;
-}
-a:hover {
- background: #aaf;
-}
-a.toc { background: transparent; }
 .progname { color:#d33; font-style:italic; font-weight:600; }
 .footer {
  font-family: sans-serif;
  font-size:10px;
  font-weight:500;
- color:#fff;
+ color:#000;
 }
-.footer a { background: transparent; color:#ff0; }
