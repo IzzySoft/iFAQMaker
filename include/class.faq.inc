@@ -107,7 +107,7 @@ class faq {
  function textReplace() {
   for ($k=0;$k<$this->blocks;++$k) {
    $content = $this->block[$k]->content;
-   if ( preg_match_all("/\{\S+\}/",$content,$matches) ) { // replace variables
+   if ( preg_match_all("/\{\w+\}/",$content,$matches) ) { // replace variables
     for ($i=0;$i<count($matches[0]);$i++) {
       $var = substr($matches[0][$i],1,strlen($matches[0][$i])-2);
       $pos = strpos($var,"->");
@@ -119,7 +119,7 @@ class faq {
       $content = preg_replace("/\{$var\}/",$rvar,$content);
     }
    }
-   if ( preg_match_all("/\*\S+\#/",$content,$matches) ) { // replace translations
+   if ( preg_match_all("/\*\w+\#/",$content,$matches) ) { // replace translations
     for ($i=0;$i<count($matches[0]);$i++) {
       $var  = substr($matches[0][$i],1,strlen($matches[0][$i])-2);
       $rvar = lang($var);

@@ -16,6 +16,7 @@ v0.1.1
   is missing in the template)
 + all docu (history, README, license etc.) is now in the doc/ subdirectory
 + added HTML ApiDoc (see doc/api) to the source tree
+! two or more placeholders ("{}") on one line sometimes broke the parse
 
 v0.1.0 (17.11.2004)
 -------------------
