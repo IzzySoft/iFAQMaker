@@ -20,7 +20,7 @@ require_once(dirname(__FILE__)."/class.template.inc");
 
 #====================================================[ Build page content ]===
 /** FAQ Generator
- * @package Help
+ * @package Api
  * @class faq
  * @author Izzy (izzysoft@qumran.org)
  * @copyright (c) 2004 by Itzchak Rehberg and IzzySoft
@@ -60,11 +60,11 @@ class faq {
 
  /** Parse input text into blocks.
   *  Blocks start with a line containing only the "block header", which
-  *  looks like "<pre>[&lt;blockname&gt;|level|hname]</pre>", where:<ul>
+  *  looks like <pre>[&lt;blockname&gt;|level|hname]</pre> where:<ul>
   *  <li><i>&lt;blockname&gt;</i> is one of "title", "text" or "eof"</li>
   *  <li><i>level</i> is an integer (or empty) for e.g. &lt;H1&gt;</li>
   *  <li><i>hname</i> is a name (&lt;A NAME="<i>name</i>"&gt;) for references</li></ul>
-  *  everything after the <li>&tl;blockname&gt;</i> is optional.
+  *  everything after the <li>&lt;blockname&gt;</i> is optional.
   * @method public parseInput
   * @param string filename input file name
   */
@@ -193,7 +193,7 @@ class faq {
   $this->t->pparse("out","main");
  }
 
- /** Set template variables. Wrapper around pagemaker::t::set_var
+ /** Set template variables. Wrapper around Template::set_var
   * @method public set_nav
   * @param string name name of template variable
   * @param string content value of template variable
