@@ -7,7 +7,7 @@
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
  # ------------------------------------------------------------------------- #
- # FAQ Generator Class File                                                  #
+ # FAQ Generator Base Class File                                             #
  # ------------------------------------------------------------------------- #
  # Requirements:                                                             #
  #  * class.template.inc                                                     #
@@ -34,8 +34,7 @@ class faq {
   * @param string toc style of the "table of contents" (ul|ol), empty for no toc
   */
  function faq($dir,$file,$toc="") {
-  $this->version = "0.1.0";
-  $this->headerSwitch(TRUE);
+  $this->version = "0.1.1";
   $this->t = new Template($dir);
   $this->t->set_file(array("main"=>"$file"));
   $this->t->set_block("main","titleblock","titlelist");
@@ -45,22 +44,6 @@ class faq {
   $this->img->w3c  = "w3c.jpg";
   $this->toc = $toc;
   $this->toclist = "";
- }
-
- /** switch the page header on/off
-  * @method public headerSwitch
-  * @param boolean on Whether the header should be generated
-  */
- function headerSwitch($on) {
-   $this->headerState = $on;
- }
-
- /** check whether the header should be generated
-  * @method public headerState
-  * @return boolean on
-  */
- function headerState() {
-   return $this->headerState;
  }
 
  /** Read the input file
@@ -147,11 +130,8 @@ class faq {
 
  /** Output the text
   * @method public parseOutput
-  * @param string title Page title for the browsers title bar
-  * @param string css_url URL for the charset to include
-  * @param optional string charset Charset used (default: utf-8)
   */
- function parseOutput($title,$css,$charset="utf-8") {
+ function parseOutput() {
   $text_open = FALSE; $block_open = 0; $toclevel = 0; $list = $this->toc;
   for ($i=0;$i<$this->blocks;++$i) {
     switch (strtolower($this->block[$i]->type)) {
@@ -210,23 +190,7 @@ class faq {
     case 1 : $this->t->parse("titlelist","titleblock"); break;
     default: $this->t->parse("titlelist","titleblock",TRUE);
   }
-  if ($this->headerState()) {
-    header("Content-type: text/html; charset=$charset");
-    echo "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>\n";
-    echo "<HTML><HEAD>\n <TITLE>$title</TITLE>\n"
-       . " <META HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=$charset'>\n";
-    if (is_array($css)) {
-      $cc = count ($css);
-      for ($i=0;$i<$cc;++$i) {
-        echo  " <LINK HREF='$css[$i]' REL='stylesheet' TYPE='text/css'>\n";
-      }
-    } else {
-      echo  " <LINK HREF='$css' REL='stylesheet' TYPE='text/css'>\n";
-    }
-    echo "</HEAD><BODY>\n";
-  }
   $this->t->pparse("out","main");
-  $this->footer();
  }
 
  /** Set template variables. Wrapper around pagemaker::t::set_var
@@ -236,16 +200,6 @@ class faq {
   */
  function set_nav($name,$content) {
    $this->t->set_var($name,$content);
- }
-
- function footer() {
-   echo '<DIV ALIGN="center" STYLE="margin-top:7px;margin-bottom:7px;">'
-      . '<IMG SRC="'.$this->img->w3c.'" ALT="w3c" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-right:3px">'
-      . '<SPAN CLASS="footer">Created by <A HREF="http://www.qumran.org/homes/izzy/software/faqmaker/" '
-      . 'TARGET="_blank">iFAQMaker</A> v'.$this->version.' &copy; 2004 by <A '
-      . 'HREF="http://www.qumran.org/homes/izzy/" TARGET="_blank">Itzchak Rehberg</A> '
-      . '&amp; <A HREF="http://www.izzysoft.de/" TARGET="_blank">IzzySoft</A></SPAN>'
-      . '<IMG SRC="'.$this->img->logo.'" ALT="IzzySoft" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-left:3px"></DIV>';
  }
 
 /** Type of the TOC: "ol", "ul" or "" (no TOC)

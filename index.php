@@ -33,17 +33,18 @@ if (isset($_REQUEST["topic"])) {
 
 #==========================================================[ Do the Topic ]===
 $infile = $fsFdir."$topic.$fsFext";
-require_once ($fsIncDir."class.faq.inc");
+require_once ($fsIncDir."class.htmlfaq.inc");
 $fsTitle .= ": ";
 if ($topic) { $fsTitle .= lang($topic); } else { $fsTitle .= lang("index"); }
 
-$faq = new faq($fsTplDir,$fsTplFile,$fsTocStyle);
+$faq = new htmlfaq($fsTplDir,$fsTplFile,$fsTocStyle);
 if (is_array($fsNav)) {
  foreach($fsNav as $var=>$val) { // setup additional template variables
   $faq->set_nav($var,$val);
  }
 }
 $faq->parseInput($infile,lang($topic));
-$faq->parseOutput($fsTitle,$fsCssFile,$fsCharSet);
-
+$faq->header($fsTitle,$fsCssFile,$fsCharSet);
+$faq->parseOutput();
+$faq->footer();
 ?>
