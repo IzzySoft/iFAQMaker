@@ -23,7 +23,7 @@ require_once(dirname(__FILE__)."/class.template.inc");
  * @package Help
  * @class faq
  * @author Izzy (izzysoft@qumran.org)
- * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+ * @copyright (c) 2004 by Itzchak Rehberg and IzzySoft
  */
 class faq {
 
@@ -202,22 +202,27 @@ class faq {
    $this->t->set_var($name,$content);
  }
 
+} // end class
+
 /** Type of the TOC: "ol", "ul" or "" (no TOC)
  * @attribute private string toc
+ * @class faq
  */
 /** Content of the TOC (to be parsed into {toc})
  * @attribute private string toclist
+ * @class faq
  */
 /** Content of the parsed input file (one line per cell)
  * @attribute private array input
+ * @class faq
  */
 /** Content of the parsed input file, splitted into blocks
  * @attribute private array block
+ * @class faq
  */
 /** Number of blocks created
  * @attribute private integer blocks
+ * @class faq
  */
-
-} // end class
 
 ?>

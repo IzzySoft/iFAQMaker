@@ -47,8 +47,6 @@ class Template {
 
   #############################################################################
   /** Constructor
-   * @package Api
-   * @class Template
    * @constructor Template
    * @param optional string root template directory
    * @param optional string unknowns how to handle unknown variables (remove/comment/keep)
@@ -59,8 +57,6 @@ class Template {
   }
 
   /** Set a new template directory
-   * @package Api
-   * @class Template
    * @method set_root
    * @param string root new template directory
    * @return boolean success
@@ -75,8 +71,6 @@ class Template {
   }
 
   /** Alter handling of unknown variables
-   * @package Api
-   * @class Template
    * @method set_unknowns
    * @param optional string unknowns (remove//comment/keep, defaults to keep)
    */
@@ -85,8 +79,6 @@ class Template {
   }
 
   /** Define the template file to use
-   * @package Api
-   * @class Template
    * @method set_file
    * @param mixed handle handle for a filename (string) or array of handle,filename
    * @param optional string filename name of template file
@@ -108,8 +100,6 @@ class Template {
 
   /** Define a block inside the template
    *  (extract the template $handle from $parent, place variable {$name} instead)
-   * @package Api
-   * @class Template
    * @method set_block
    * @param string parent handle of parent block
    * @param string handle block to define
@@ -134,8 +124,6 @@ class Template {
   /** define the content of one {var} inside the template
    *  Alternatively to passing two strings, they can be passed as a array
    *  of pairs name,value
-   * @package Api
-   * @class Template
    * @method set_var
    * @param string varname name of a variable that is to be defined
    * @param optional string value value of that variable
@@ -158,8 +146,6 @@ class Template {
   }
 
   /** Substitute variables
-   * @package Api
-   * @class Template
    * @method subst
    * @param string handle handle of template where variables are to be substituted
    * @return string parsed template (or FALSE on error)
@@ -175,8 +161,6 @@ class Template {
   }
   
   /** Substitute variables
-   * @package Api
-   * @class Template
    * @method psubst
    * @param string handle handle of template where variables are to be substituted
    * @return boolean FALSE
@@ -187,8 +171,6 @@ class Template {
   }
 
   /** Parse a template
-   * @package Api
-   * @class Template
    * @method parse
    * @param string target handle of variable to generate
    * @param mixed handle handle of template(s) to substitute (string or array)
@@ -215,8 +197,6 @@ class Template {
   
   /** Parse a template (final parse)
    *  calls parse(), prints the result and then returns FALSE
-   * @package Api
-   * @class Template
    * @method pparse
    * @param string target handle of variable to generate
    * @param mixed handle handle of template(s) to substitute (string or array)
@@ -229,8 +209,6 @@ class Template {
   }
   
   /** Retrieve all set vars
-   * @package Api
-   * @class Template
    * @method get_vars()
    * @return array array of variables (keys)
    */
@@ -243,8 +221,6 @@ class Template {
   }
   
   /** Retrieve variable contents
-   * @package Api
-   * @class Template
    * @method get_var
    * @param mixed varname name of variable (string) or array of variable names
    * @return mixed variable setting (string or array of contents)
@@ -262,8 +238,6 @@ class Template {
   }
   
   /** Obtain list of undefined variables
-   * @package Api
-   * @class Template
    * @method get_undefined
    * @param string handle handle of a template.
    * @return array array of undefined variables (FALSE if none)
@@ -291,8 +265,6 @@ class Template {
   }
 
   /** Finnish a block (handle unknowns)
-   * @package Api
-   * @class Template
    * @method finish
    * @param string str string to finish.
    * @return string finnished string (parsed template)
@@ -309,8 +281,6 @@ class Template {
   }
 
   /** Print a Variable (first call finnish() on it and then print the result)
-   * @package Api
-   * @class Template
    * @method p
    * @param string varname name of variable to print
    */
@@ -319,8 +289,6 @@ class Template {
   }
 
   /** Retrieve a Variable (first call finnish() on it and return print the result)
-   * @package Api
-   * @class Template
    * @method get
    * @param string varname variable to retrieve
    * @return string finnished content

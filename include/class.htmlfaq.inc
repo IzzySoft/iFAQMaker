@@ -21,9 +21,10 @@ require_once(dirname(__FILE__)."/class.faq.inc");
 #====================================================[ Build page content ]===
 /** FAQ Generator
  * @package Help
- * @class htmlfaq extends faq
+ * @class htmlfaq
+ * @extends faq
  * @author Izzy (izzysoft@qumran.org)
- * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+ * @copyright (c) 2004 by Itzchak Rehberg and IzzySoft
  */
 class htmlfaq extends faq {
 
