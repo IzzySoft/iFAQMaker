@@ -123,7 +123,7 @@ Description mapping ("Translation"): The <code>trans.inc</code> file
 The <code>trans.inc</code> file, as the file extension may already suggest,
 again parsed as PHP code. It is looked for in the FAQ text file directory
 defined by the <code>$fsFext</code> variable of your
-<code><A HREF=#config_inc">config.inc</A></code> file. and holds some useful
+<code><A HREF="#config_inc">config.inc</A></code> file. and holds some useful
 mappings, defined in the array variable <code>$fsLang</code>. But what are
 these for?
 
