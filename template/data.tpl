@@ -1,10 +1,9 @@
-<TABLE WIDTH="100%" class="navtable">
- <TR><TD COLSPAN="3">&nbsp;</TD></TR>
- <TR><TD WIDTH="33%"><DIV ALIGN="left">{back}</DIV></TD>
-     <TD WIDTH="34%"><DIV ALIGN="center">{force}</DIV></TD>
-     <TD WIDTH="33%"><DIV ALIGN="right">{index}</DIV></TD></TR>
- <TR><TD COLSPAN="3"><DIV ALIGN="center"><H2>{listtitle}</H2></DIV></TD></TR>
-</TABLE>
+<DIV STYLE="margin:7px">
+ <SPAN STYLE="left:0">{back}</SPAN>
+ <SPAN STYLE="position:absolute;right:7">{index}</SPAN>
+</DIV>
+<DIV ALIGN="center"><H2>{listtitle}</H2></DIV>
+
 <DIV ALIGN="center">
 <TABLE WIDTH="90%" ALIGN="center" BORDER="1" CELLSPACING="0" CELLPADDING="7"><TR><TD CLASS="help1">
 

@@ -6,6 +6,9 @@ History for iFAQMaker
 v0.1.1
 -------------------
 ! fixed a litte HTML 4.01 compatibily issue
+* some changes to the sample template to allow "overloading" of the default.css
+  on top of another (site-specific) one without the nasty side-effect on the
+  "back" and "index" navigator background table
 
 v0.1.0 (17.11.2004)
 -------------------
