@@ -1,0 +1,9 @@
+# FAQ Index file
+[title]
+FAQMaker
+
+[text]
+<ul>
+ <li><A HREF="{_SERVER["PHP_SELF"]}?topic=docu">*docu#</A></li>
+ <li>*faqmaker# <A HREF="{_SERVER["PHP_SELF"]}?topic=demofiles">*demofiles#</A></li>
+</ul>

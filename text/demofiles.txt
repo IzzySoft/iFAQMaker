@@ -1,0 +1,48 @@
+#=============================================================[ Minimalist ]===
+[title|1|minimalist]
+The minimalist solution
+
+[text]
+The absolute minimum to use inside an input file is one title block. You will
+probably never use this -- since a title without content makes no sense. So I
+will skip that. The example below would just build two topics on the same level,
+the titles as headers and the text as text blocks (basically this is what this
+page uses - just with more blocks and more text):
+[text]
+{fmCodeOpen}[title]<br>First topic<br><br>[text]<br>This is the description of
+the first topic. Many more lines may follow...<br><br>[topic]<br>Second topic
+<br><br>[text]<br>Some text to the second topic{fmCodeClose}
+
+#===========================================================[ simple level ]===
+[title|1|simple_level]
+Simple usage of title levels
+
+[text]
+In most cases, titles in FAQs have subtitles. In *pfaqmaker#, these are
+represented by "levels". To get an idea of what we are talking about: In HTML,
+you have headers like <code>&lt;H1&gt;</code>, <code>&lt;H2&gt;</code>, and so
+on. The digit in these tags is what we refer to as level. So the next example
+constructs a simple page with two main titles, the first containing one
+subtitle:
+[text]
+{fmCodeOpen}[title]<br>First topic<br><br>[text]<br>This is the description of
+the first topic. Many more lines may follow...<br><br>[topic|2]<br>First
+subtopic of the first topic<br><br>[text]<br>Some content for this subtopic<br>
+<br>[text]<br>And some more text in a new paragraph - also for the first
+subtopic<br><br>[topic|2]<br>Second subtopic of the first topic<br><br>[text]
+<br>and some text for this second subtopic<br><br>[topic]<br>Second main topic
+<br><br>[text]<br>Some text to the second topic{fmCodeClose}
+
+#=============================================================[ References ]===
+[title|1|references]
+Using named references
+
+[text]
+Now let's go back to the minimalist variant (concerning the block count), add
+a named reference to the first title, and make use of this in the text of the
+second title:
+[text]
+{fmCodeOpen}[title|1|first]<br>First topic<br><br>[text]<br>This is the
+description of the first topic. Many more lines may follow...<br><br>[topic]
+<br>Second topic<br><br>[text]<br>Some text to the second topic, and a
+&lt;A HREF="#first"&gt;reference&lt;/A&gt; to the first block{fmCodeClose}

@@ -1,0 +1,98 @@
+$Id$
+
+This is the README file I wrote for FAQMaker v0.1.0. A complete documentation
+you find after the (easy done) install -- see below -- so here is just some
+general information:
+
+===============================================================================
+
+Contents:
+---------
+  1.) CopyRight
+  2.) Warranty
+  3.) Requirements
+  4.) Pre-Requisites / Installation
+  5.) Updating
+  6.) Known bugs / limitations
+  7.) Download and Sites
+
+===============================================================================
+
+1.) CopyRight (and CopyLeft)
+----------------------------
+
+  This nice piece of software is (c) 2004 by Itzchak Rehberg and IzzySoft,
+  and is protected by the GNU Public License Version 2 (GPL). In short, this
+  means:
+  - you'll have the source code available
+  - you may run this program on as many machines as you want/have
+  - you may copy and distribute it as much as you want - as long as you don't
+    take money for it (and keep all files together!)
+  - you may edit this code to fit your needs/wishes (please, let me know about
+    improvements!)
+  - you may use this code for own applications - but they have to be released
+    under GPL then as well.
+  For details, please read the file named LICENSE in the doc/ directory.
+  If you release this program e.g. in a bundle of software on CD/DVD, release
+  an article about this program etc, let the author know about this. Not that
+  you need an explicit permission (as long as you stick to the above terms,
+  especially the GPL) - you are even encouraged to do so. I just want to be
+  informed about the fact to be up-to-date about all PR taking place ;).
+
+===============================================================================
+
+2.) Warranty
+------------
+
+  This program is provided "as is" with no warranty (see GPL Par. 11).
+  Especially this means, that the author is not responsible for any damages
+  caused by the use of this software - explicitly or implicitly. The only thing
+  I can guarantee you is: it will consume some disk space :)
+
+===============================================================================
+
+3.) Requirements
+----------------
+
+ There are a few things you have to make sure first (without them the whole
+ program, including this setup, won't work at all):
+ 1. have a webserver running (I just tested it with Apache)
+ 2. have PHP running
+
+===============================================================================
+
+4.) Pre-Requisites / Installation
+---------------------------------
+
+ If above mentioned requirements are met, the installation is easy described
+ in a single sentence: Copy all files contained in this archive to the
+ desired target location inside your web tree. FAQMaker should then run out
+ of the box by just pointing your browser to its index.php.
+
+===============================================================================
+
+5.) Updating
+------------
+
+ Same as the installation - just make sure to not overwrite some of your custom
+ files ;)
+
+===============================================================================
+
+6.) Known bugs / limitations
+----------------------------
+
+ This is just the first beta of FAQMaker - so I expect all kind of problems ;)
+ But as soon as you report them to me, I will try to have them fixed asap.
+
+===============================================================================
+
+8.) Download and Sites
+----------------------
+
+ If you have FAQMaker installed and running, just follow the links in the
+ footers of the generated pages.
+
+ If you have questions/suggestions, you can also contact me via email, using
+ the address izzysoft@qumran.org - and please, don't give up waiting if I
+ do not respond that quickly; it sometimes takes me a while :)

@@ -1,0 +1,60 @@
+BODY {
+ font-family: sans-serif;
+ font-size: 12px;
+ margin: 0;
+ background-color: #69f;
+}
+A { text-decoration:none; background: #ddf; color: #009; }
+A:link{ text-decoration:none }
+A:visited{ text-decoration:none }
+A:active{ text-decoration:none }
+.tablink { color: #000000; }
+TABLE { background-color: #fff; }
+.navtable { background-color: #69f; }
+H2 { color: #0000ff; }
+TH {
+ font-family: sans-serif;
+ font-size: 12px;
+ background-color: #ff9;
+ text-align: center;
+ font-weight: bold;
+ color: #800;
+}
+TH.help { background-color: #e5e5e5; text-align: center; }
+TH.help1 { background-color: #ff0; font-size: 14px; }
+TH.help2 { background-color: #ff9; font-size: 13px; }
+TH.help3 { background-color: #ffc; font-size: 12px; }
+TD.help1  { background-color: #f6f6f6; }
+TD { font-size: 12px; }
+P { margin-top:0; margin-bottom:0; }
+CODE { font-size: 12px; font-family: monospace; color: #603; }
+
+.code {
+ font-family: monospace; 
+ font-size: 8pt; 
+ background-color: #eee;
+ border:  1px solid #000000;
+ margin-bottom: 6px;
+ margin-top: 6px;
+ padding: 4px;
+ color: #660033;
+}
+a:active {
+ background: #ff0;
+}
+a:link {
+ text-decoration: none;
+ background: #ddf;
+}
+a:hover {
+ background: #aaf;
+}
+a.toc { background: transparent; }
+.progname { color:#d33; font-style:italic; font-weight:600; }
+.footer {
+ font-family: sans-serif;
+ font-size:10px;
+ font-weight:500;
+ color:#fff;
+}
+.footer a { background: transparent; color:#ff0; }

@@ -1,0 +1,262 @@
+# FAQMaker documentation
+#==================================================================[ Intro ]===
+[title|1|intro]
+Introduction
+
+#-------------------------------------------------------------[ What Is... ]---
+[title|2|whatis]
+What is FAQMaker?
+
+[text]
+*pfaqmaker# is a simple PHP script to ease the managments of FAQs. Basically,
+it is a rewrite of the code I used in *pvp# (and, besides, this rewrite goes
+back there to replace the old code) -- and that is where the, on a first glance
+-- strange-looking syntax for the <a href="#infile">input files</a> comes from.
+The main topics *pfaqmaker# is intended to cover are:
+<ul>
+ <li>Inserting/Deleting/Moving single topics (within the same FAQ file) without
+     the hazzle of reorganizing indices, numberings and links</li>
+ <li>Use of templates to display the FAQ corresponding to the web site design</li>
+ <li>Use of user-definable makros for frequently used formatings etc.</li>
+</ul>
+
+#-----------------------------------------------------------[ How it works ]---
+[title|2|howworks]
+How does it work?
+
+[text]
+*pfaqmaker# needs no database or the like - it simply works with files. In
+general, we can distinguish between the program code, configuration, and content
+files. One central <code>index.php</code> file is the only one to be called
+within the browser. It takes the topic to display as only argument, which is at
+the same time the basename of the content file to parse (without the extension):
+so <code>http://www.myserver.tld/faq/index.php?topic=faqmaker</code> parses the
+<code>faqmaker.txt</code> content file and displays it according to your setup,
+as you see it here.
+[text]
+This is just a short description - further below, this page also contains
+information about the <A HREF="#setup">setup</A>, <A HREF="#config">configuration</A>,
+and the structure of the <A HREF="#infile">input files</A>.
+
+#================================================[ Setup and Configuration ]===
+[title|1|setup]
+Setup and configuration
+
+#-----------------------------------------------------------[ Installation ]---
+[title|2|install]
+Installation
+
+[text]
+The installation of *pfaqmaker# is quite easy: just copy all the content of the
+archive to the place where you want to have it in your web tree, and it is
+ready to use. Of course you can adapt it closer to your website and personal
+requirements by e.g. placing the templates or content files to another location,
+and adjust the <A HREF="#config">config</A> to reflect these changes and more.
+
+#----------------------------------------------------------[ Configuration ]---
+[title|2|config]
+Configuration
+
+[text]
+The configuration takes place in the
+<a href="#config_inc"><code>config.inc</code></a> files, which must
+reside in the same directory as the <code>index.php</code> itself (unless you
+change the <code>include()</code> command in the <code>index.php</code> to use
+a different file/location). For all relative directory/url specifications made
+here keep in mind, that they are relative to the <code>index.php</code> files
+location (not to the <code>config.inc</code>).
+[text]
+There are some other files for customizing *pfaqmaker# described in this
+document. These are the <a href="#macros_inc"><code>makros.inc</code></a> file
+for your personal makro definitions, and the
+<a href="#trans_inc"><code>trans.inc</code></a> file for description mapping
+("translation").
+
+#-------------------------=[ config.inc ]=--
+[title|3|config_inc]
+Script configuration: The <code>config.inc</code> file
+
+[text]
+The basic configuration of *pfaqmaker# is done here - and under normal
+circumstances, there should be no change necessary to the "program files"
+itself. Here you set up the files and directories used, charset and title,
+plus some additional elements you want to be in the generated page (this is
+be done by setting up placeholders for them in your <a href="#tplfile">Template
+files</a> which we then refer here. All variable names used for the setup
+start with <code>$fs</code> to avoid conflicts e.g. with the
+<a href="#makros_inc">makros</a> (<code>$fm*</code>) and other variables. These
+initials stand for "<b>F</b>aqmaker <b>S</b>etup" resp. "<b>F</b>aqmaker
+<b>M</b>akro". The <code>config.inc</code> file is parsed as PHP script: so
+make sure you don't break the syntax ;)
+
+[text]
+In the provided sample <code>config.inc</code> file, the setup variables are
+provided with a short description of what they stand for, from which you should
+be able to understand their meaning. Just some words on the last block in this
+file, the placeholders for your <a href="#tplfile">Template file</a>: Since
+these may contain phrases that need to go through the
+"<a href="#trans_inc">translator</a>", we set them up as tiny little function
+to be executed after we read the "TransTable file". The <code>$fsNav</code>
+array elements name is the name of the field in your <a href="#tplfile">Template
+file</a>, the term assigned to it is the replacement.
+
+#-------------------------=[ makros.inc ]=--
+[title|3|makros_inc]
+User Makros: The <code>makros.inc</code> file
+
+[text]
+Here you can set up makros for phrases/formatings you frequently use. Same as
+with the <code>config.inc</code> file, this is parsed as PHP code; so make sure
+to a) stick to the PHP syntax and b) prefix the makros names with
+<code>$fm</code> (recommended) to avoid overwriting e.g. setup variables. All
+these makros (as well as other set-up variables) you then can access in your
+<a href="#infile">FAQ text files</a> by enclosing the makro name in curly
+braces (no blanks in between!). The <code>$fmCodeOpen</code> makro found in the
+shipped sample <code>macros.inc</code> thus can be addressed as
+&#123;fmCodeOpen&#125;
+
+#-------------------------=[ trans.inc ]=--
+[title|3|trans_inc]
+Description mapping ("Translation"): The <code>trans.inc</code> file
+
+[text]
+The <code>trans.inc</code> file, as the file extension may already suggest,
+again parsed as PHP code. It is looked for in the FAQ text file directory
+defined by the <code>$fsFext</code> variable of your
+<code><A HREF=#config_inc">config.inc</A></code> file. and holds some useful
+mappings, defined in the array variable <code>$fsLang</code>. But what are
+these for?
+
+[text]
+We evaluate the topic name of a FAQ file by the file name. Since the file name
+itself sometimes is not very descriptive, we can map its name to a different
+"translation". So if you e.g. have a file named <code>jr_tolkin.txt</code>, and
+the FAQ should be titled "J.R. Tolkien", just enter this connection here:
+{fmCodeOpen}$fsLang["jr_tolkien"] = "J.R. Tolkien"{fmCodeClose}
+These relations are then "translated" by the <code>lang()</code> function which,
+if it finds no matching relation, just returns the passed string with the
+first letter in uppercase. As you see in the example <code>config.inc</code>,
+you can make use of this for common placeholders in your templates as well.
+
+#-------------------------=[ Templates ]=--
+[title|3|tplfile]
+The template files
+
+[text]
+For the "Template feature", *pfaqmaker# uses the template class from PHPLib.
+The template file itself is plain HTML code, containing some placeholders and
+block marks (for repeated parsing of a single part of the template). You can
+create your own templates (and stylesheets), and this way fit the resulting
+formated FAQ page into your design. Currently, *pfaqmaker# generates the HTML
+header directly, so you are restricted to HTML pages. This may change with some
+future version of *pfaqmaker#, if I see that there is need for (of course this
+depends on <b><i>your</i></b> feedback).
+
+#==================================================================[ Usage ]===
+[title|1|usage]
+Usage of *faqmaker#
+
+#------------------------------------------------------------[ Input files ]---
+[title|2|infile]
+Format of the Input Files
+
+[text]
+The input files are plain text (ASCII) files, containing several text
+<A HREF="#blocks">blocks</A>. Within these text blocks, you optionally can use
+<A HREF="#placeholder">placeholders</A> which, as the name suggests, are
+replaced by *pfaqmaker# when the file is parsed. For some samples of how an
+input file can look like, see the page containing some *pfaqmaker#
+<A HREF="{_SERVER["PHP_SELF"]}?topic=demofiles">Demo input files</A>.
+
+#-------------------------=[ Block markers ]=--
+[title|3|blocks]
+Block markers
+
+[text]
+Text blocks start with a block marker and end, logically, when the next text
+block starts (or at the end of the input file - whichever occurs first). There
+are three types of blocks: title, text and - optionally - the eof block. Block
+markers are enclosed in square brackets and must stand alone (without anything
+around it but, optionally, spaces) on a line. The block content then should
+start in the next line.
+
+[text]
+So the simple title block marker looks like <code>[title]</code>. Optionally,
+it can have up to two parameters that are separated by the pipe symbol. The
+first parameter is the title level (defaults to "1"), the second a name to be
+used for references -- this defaults to the block number, which is a bit
+cryptic and will just work for automatically generated references, as from the
+TOC to the topic. Such a "complete" block marker would look like
+<code>[title|2|special]</code>, which would mark a 2nd level title whichs
+content can be refered to with <code>&lt;A HREF="#special"&gt;</code>.
+
+[text]
+The same syntax applies to the <code>[text]</code> block marker, with the only
+difference that the two optionally parameters will have no effect here.
+
+#-------------------------=[ Placeholders ]=--
+[title|3|placeholder]
+Placeholders
+
+[text]
+The placeholders can be devided into two types: makros and translators.
+
+[text]
+<b>Makros</b> are enclosed in curly braces. You can define own makros in the
+<code><A HREF="#makros_inc">makros.inc</A></code> file. Generally, you can not
+only use the makros defined there, but all variables set in the script can be
+refered by this - which is useful if you want to link to other categories
+(input files) available to the same *pfaqmaker# instance, by creating a href
+looking like
+<code>&lt;A HREF="&#123;_SERVER["PHP_SELF"]&#125;?topic=other_file"&gt;</code>.
+Inside the curly braces there must be <b><i>no spaces</i></b> - or the makro
+will not work. Easy reason: Spaces are not allowed in variable names.
+Again, for details you may want to have a look at the
+<a href="{_SERVER["PHP_SELF"]}?topic=demofiles">Demo Input Files</a> for
+*pfaqmaker#.
+
+[text]
+<b>Translators</b> are defined by the <code><a href="#trans_inc">trans.inc</a></code>
+file. This is thought for "translating" certain words that should always look
+the same throughout the document, but could change for several reasons - like
+e.g. brand names. Imagine for example the reference to a program in a FAQ - like
+*pfaqmaker# here. Now your FAQ is as big as &gt; 100kB text file, mentioning
+the programs name several 20..200 times -- and now I decide to rename it to,
+e.g. phpMyFAQ. Now you could do a search-and-replace on all your FAQ files --
+or simply change the phrase in the <code>trans.inc</code> file if you made use
+of translations.
+
+[text]
+To tell a translator, I used the old German "BTX style": so a word that starts
+with an asterisk (*) and ends with a hash (#) is considered a translator. Again,
+no spaces are allowed between the * and the #.
+
+#-----------------------------=[ Comments ]=--
+[title|3|comments]
+Comments inside the input file
+
+[text]
+Generally, you can place comments everywhere inside the document (see the source
+input file of this page for example, if you can): every line that starts with
+a hash mark (#) is considered a comment (leading spaces are allowed). But there
+are two special areas treated completely as comments: the area before the first
+<code>[title]</code> and after the optional <code>[eof]</code> block markers.
+Everything in those places will completely be ignored. This can be useful if
+you e.g. temporarily want to remove a text block from the FAQ: just move it
+behind the <code>[eof]</code> mark, and it will no longer be displayed. Later
+(after some corrections, or whatever reason it was has been solved) you can
+move it back at any time, the information is not lost.
+
+#----------------------------------------------------------------[ NoTopic ]---
+[title|2|notopic]
+Default file for "no topic"
+
+[text]
+If the script is called without any parameter, it would not know which input
+file to process - so we should have a useful default. An index page, displaying
+all available categories (= input files), will make most sense in this case.
+For this issue, the infile name <code>index.&lt;ext&gt;</code> (where &lt;ext&gt;
+is the extension you specified with <code>$fsFext</code> in your
+<code><a href="#config_inc">config.inc</a></code> file) is reserved: at this
+place you should create your "central page", containing links to all your
+FAQ files. This "index" file has the same structure as any normal input file.
