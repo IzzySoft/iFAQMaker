@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # FAQMaker                                      (c) 2004 by Itzchak Rehberg #
+ # iFAQMaker                                     (c) 2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -16,7 +16,7 @@
   $fsLang["toc"]       = "Table of Contents";
   $fsLang["ppvp"]      = "<span class='progname'>phpVideoPro</span>";
   $fsLang["pvp"]       = "phpVideoPro";
-  $fsLang["pfaqmaker"] = "<span class='progname'>FAQMaker</span>";
-  $fsLang["faqmaker"]  = "FAQMaker";
+  $fsLang["pfaqmaker"] = "<span class='progname'>iFAQMaker</span>";
+  $fsLang["faqmaker"]  = "iFAQMaker";
   $fsLang["demofiles"] = "Demo Files";
 ?>

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # FAQMaker                                      (c) 2004 by Itzchak Rehberg #
+ # iFAQMaker                                     (c) 2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -221,7 +221,7 @@ class faq {
    echo '<DIV ALIGN="center" STYLE="margin-top:7px;margin-bottom:7px;">'
       . '<IMG SRC="w3c.jpg" ALT="w3c" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-right:3px">'
       . '<SPAN CLASS="footer" ALIGN="middle">Created by <A HREF="http://www.qumran.org/homes/izzy/software/faqmaker/" '
-      . 'TARGET="_blank">FAQMaker</A> v'.$this->version
+      . 'TARGET="_blank">iFAQMaker</A> v'.$this->version
       . ' &copy; 2003-2004 by <A STYLE="text-decoration:none" '
       . 'HREF="http://www.qumran.org/homes/izzy/" TARGET="_blank">Itzchak Rehberg</A> '
       . '&amp; <A STYLE="text-decoration:none" HREF="http://www.izzysoft.de" '

@@ -1,6 +1,6 @@
 $Id$
 
-This is the README file I wrote for FAQMaker v0.1.0. A complete documentation
+This is the README file I wrote for iFAQMaker v0.1.0. A complete documentation
 you find after the (easy done) install -- see below -- so here is just some
 general information:
 
@@ -66,7 +66,7 @@ Contents:
 
  If above mentioned requirements are met, the installation is easy described
  in a single sentence: Copy all files contained in this archive to the
- desired target location inside your web tree. FAQMaker should then run out
+ desired target location inside your web tree. iFAQMaker should then run out
  of the box by just pointing your browser to its index.php.
 
 ===============================================================================
@@ -82,7 +82,7 @@ Contents:
 6.) Known bugs / limitations
 ----------------------------
 
- This is just the first beta of FAQMaker - so I expect all kind of problems ;)
+ This is just the first beta of iFAQMaker - so I expect all kind of problems ;)
  But as soon as you report them to me, I will try to have them fixed asap.
 
 ===============================================================================
@@ -90,7 +90,7 @@ Contents:
 8.) Download and Sites
 ----------------------
 
- If you have FAQMaker installed and running, just follow the links in the
+ If you have iFAQMaker installed and running, just follow the links in the
  footers of the generated pages.
 
  If you have questions/suggestions, you can also contact me via email, using

@@ -1,6 +1,6 @@
 # FAQ Index file
 [title]
-FAQMaker
+{faqmaker}
 
 [text]
 <ul>

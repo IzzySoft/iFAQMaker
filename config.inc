@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # FAQMaker                                      (c) 2004 by Itzchak Rehberg #
+ # iFAQMaker                                     (c) 2004 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -33,7 +33,7 @@ $fsCssFile[]= "default.css"; // you can specify multiple stylesheets
 $fsMacros = "macros.inc";  // file holding formating macros
 $fsTocStyle = "ul";        // style of the TOC: "ul", "ol" or "" (no toc)
 $fsITocStyle = "";         // same for the default index page
-$fsTitle = "FAQMaker";     // basename of the string for the browsers titlebar
+$fsTitle = "iFAQMaker";    // basename of the string for the browsers titlebar
 
 #==========================[ Additional placeholders in your template file ]===
 function tplInit() { // we call this AFTER reading the "TransTable"

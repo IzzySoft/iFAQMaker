@@ -1,11 +1,11 @@
-# FAQMaker documentation
+# iFAQMaker documentation
 #==================================================================[ Intro ]===
 [title|1|intro]
 Introduction
 
 #-------------------------------------------------------------[ What Is... ]---
 [title|2|whatis]
-What is FAQMaker?
+What is {faqmaker}?
 
 [text]
 *pfaqmaker# is a simple PHP script to ease the managments of FAQs. Basically,
