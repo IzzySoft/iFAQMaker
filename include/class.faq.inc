@@ -34,7 +34,7 @@ class faq {
   * @param string toc style of the "table of contents" (ul|ol), empty for no toc
   */
  function faq($dir,$file,$toc="") {
-  $this->version = "0.1.1";
+  $this->version = "0.1.2";
   $this->t = new Template($dir);
   $this->t->set_file(array("main"=>"$file"));
   $this->t->set_block("main","titleblock","titlelist");
