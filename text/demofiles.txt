@@ -52,7 +52,7 @@ description of the first topic. Many more lines may follow...<br><br>[topic]
 Plugins
 
 [text]
-With iFAQMaker, you also can use plugins. An example is the SQL HiLiter that
+With *pfaqmaker#, you also can use plugins. An example is the SQL HiLiter that
 ships with the distribution. So here comes some sample of using it: I put
 the SQL code in the file <code>sample.sql</code> and included it with the
 plugin. The link gives you the opportunity to download the source file, while
