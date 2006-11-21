@@ -46,3 +46,19 @@ second title:
 description of the first topic. Many more lines may follow...<br><br>[topic]
 <br>Second topic<br><br>[text]<br>Some text to the second topic, and a
 &lt;A HREF="#first"&gt;reference&lt;/A&gt; to the first block{fmCodeClose}
+
+#================================================================[ Plugins ]===
+[title|1|plugins]
+Plugins
+
+[text]
+With iFAQMaker, you also can use plugins. An example is the SQL HiLiter that
+ships with the distribution. So here comes some sample of using it: I put
+the SQL code in the file <code>sample.sql</code> and included it with the
+plugin. The link gives you the opportunity to download the source file, while
+in this text the SQL code appears hilited. In the text file, this looks like
+a placeholder: <code>&#123;sqlfile("text/sample.sql")&#125;</code>, and in the
+browser it looks like this:
+
+[text]
+{sqlfile("text/sample.sql")}
