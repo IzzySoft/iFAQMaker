@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # iFAQMaker                                     (c) 2004 by Itzchak Rehberg #
+ # iFAQMaker                                (c) 2004-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #

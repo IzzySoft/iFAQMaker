@@ -114,7 +114,18 @@ class faq {
        $obj = substr($var,0,$pos); $prop = substr($var,$pos+2);
        GLOBAL $$obj;
        $rvar = $$obj->$prop;
-      } else { $rvar = $GLOBALS[$var]; }
+      } else {
+        $tpos = strpos($var,"(");
+        if ($tpos) {
+          $tdir = $_SERVER["DOCUMENT_ROOT"].dirname($_SERVER["PHP_SELF"])."/";
+          $tvar = substr($var,0,$tpos);
+          $rvar = $tvar($tdir.substr($var,$tpos+2,strpos($var,")")-$tpos-3));
+        } else { $rvar = $GLOBALS[$var]; }
+      }
+      $var  = str_replace("/","\/",$var); // need to addslashes for
+      $var  = str_replace('"','\"',$var); // preg_replace (the functions
+      $var  = str_replace('(','\(',$var); // addslashes and quotemeta do
+      $var  = str_replace(')','\)',$var); // not help here
       $content = preg_replace("/\{$var\}/",$rvar,$content);
     }
    }

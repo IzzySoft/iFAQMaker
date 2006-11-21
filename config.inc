@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # iFAQMaker                                     (c) 2004 by Itzchak Rehberg #
+ # iFAQMaker                                (c) 2004-2006 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -22,6 +22,10 @@ $fsTrans  = "trans.inc";   // "TransTable" for file names
 $fsTplDir = "template/";   // where the template files are located
 $fsTplFile= "data.tpl";    // name of the template file to use
 $fsIdxTpl = "toc.tpl";     // template file for the index
+
+#--[ PlugIns ]--
+$fsPlugDir = "plugins/";
+include($fsPlugDir."sql.inc"); // SQL Highliter
 
 #--[ Misc ]--
 $fsIncDir = "include/";    // where the class files are located. Leave empty
