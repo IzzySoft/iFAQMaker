@@ -106,6 +106,7 @@ class faq {
  function textReplace() {
   for ($k=0;$k<$this->blocks;++$k) {
    $content = $this->block[$k]->content;
+   $content = str_replace("\$","&#36;",$content);
    if ( preg_match_all("/\{\S+\}/",$content,$matches) ) { // replace variables
     for ($i=0;$i<count($matches[0]);$i++) {
       $var = substr($matches[0][$i],1,strlen($matches[0][$i])-2);
@@ -126,6 +127,7 @@ class faq {
       $var  = str_replace('"','\"',$var); // preg_replace (the functions
       $var  = str_replace('(','\(',$var); // addslashes and quotemeta do
       $var  = str_replace(')','\)',$var); // not help here
+      $rvar = str_replace("\$","&#36;",$rvar);
       $content = preg_replace("/\{$var\}/",$rvar,$content);
     }
    }
