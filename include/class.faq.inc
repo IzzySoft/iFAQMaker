@@ -214,6 +214,38 @@ class faq {
    $this->t->set_var($name,$content);
  }
 
+ /** Read list of keywords from a given file and set them up as regexp pattern
+  *  All keywords will be matched as "whole words" only (i.e. not as part
+  *  of other words)
+  *  Used for the hilite plugins
+  * @method public regexp_pattern_word_file
+  * @param string name of the file holding the keywords, one by line
+  * @return string regexp pattern
+  */
+ function regexp_pattern_word_file($file) {
+   $list = file($file);
+   $keywords = "/\b(";
+   $lc = count($list);
+   for ($i=0;$i<$lc;++$i) {
+     $keywords .= trim($list[$i])."|";
+   }
+   $keywords = substr($keywords,0,strlen($sh->keywords)-1).")\b/i";
+   return $keywords;
+ }
+
+ /** Read list of keywords from a given file and set them up as regexp pattern
+  *  All keywords will be matched as "strings" only (i.e. also as part of
+  *  other words)
+  *  Used for the hilite plugins
+  * @method public regexp_pattern_file
+  * @param string name of the file holding the keywords, one by line
+  * @return string regexp pattern
+  */
+ function regexp_pattern_file($file) {
+   $keywords = $this->regexp_pattern_word_file($file);
+   return "/".substr($keywords,3,strlen($keywords)-7)."/i";
+ }
+
 /** Type of the TOC: "ol", "ul" or "" (no TOC)
  * @attribute private string toc
  */
