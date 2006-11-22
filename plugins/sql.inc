@@ -16,31 +16,15 @@
  #   file.sql is searched from the directory of your calling script          #
  #############################################################################
 
+ #===============================================[ Define the placeholder ]===
  $sqlfile = "sqlfile";
 
  #================================================[ setup hilite keywords ]===
- $sql->list = file(dirname(__FILE__)."/sql.keywords");
- $sql->keywords = "/\b(";
- $lc = count($sql->list);
- for ($i=0;$i<$lc;++$i) {
-   $sql->keywords .= trim($sql->list[$i])."|";
- }
- $sql->keywords = substr($sql->keywords,0,strlen($sql->keywords)-1).")\b/i";
- $sql->list = file(dirname(__FILE__)."/sql.types");
- $sql->typewords = "/\b(";
- $lc = count($sql->list);
- for ($i=0;$i<$lc;++$i) {
-   $sql->typewords .= trim($sql->list[$i])."|";
- }
- $sql->typewords = substr($sql->typewords,0,strlen($sql->typewords)-1).")\b/i";
- $sql->list = file(dirname(__FILE__)."/common.token");
- $sql->commonwords = "/(";
- $lc = count($sql->list);
- for ($i=0;$i<$lc;++$i) {
-   $sql->commonwords .= trim($sql->list[$i])."|";
- }
- $sql->commonwords = substr($sql->commonwords,0,strlen($sql->commonwords)-1).")/i";
+ $sql->keywords    = $faq->regexp_pattern_word_file(dirname(__FILE__)."/sql.keywords");
+ $sql->typewords   = $faq->regexp_pattern_word_file(dirname(__FILE__)."/sql.types");
+ $sql->commonwords = $faq->regexp_pattern_file(dirname(__FILE__)."/common.token");
 
+ #=================================================[ PlugIn functionality ]===
  function sqlhighlite($string) {
    GLOBAL $sql;
    if (strpos(trim($string),"--")===0) { // comment
