@@ -22,6 +22,13 @@ include("config.inc");
 include($fsMacros);
 include($fsFdir.$fsTrans);
 tplInit();
+require_once ($fsIncDir."class.htmlfaq.inc");
+$faq = new htmlfaq($fsTplDir,$fsTplFile,$fsTocStyle);
+
+#==================================================[ Activate the PlugIns ]===
+for ($fmpc=0;$fmpc<count($fsPlugIn);++$fmpc) {
+  include($fsPlugDir.$fsPlugIn[$fmpc].".inc");
+}
 
 #=========================================================[ TOC or Topic? ]===
 if (isset($_REQUEST["topic"])) {
@@ -33,11 +40,9 @@ if (isset($_REQUEST["topic"])) {
 
 #==========================================================[ Do the Topic ]===
 $infile = $fsFdir."$topic.$fsFext";
-require_once ($fsIncDir."class.htmlfaq.inc");
 $fsTitle .= ": ";
 if ($topic) { $fsTitle .= lang($topic); } else { $fsTitle .= lang("index"); }
 
-$faq = new htmlfaq($fsTplDir,$fsTplFile,$fsTocStyle);
 if (is_array($fsNav)) {
  foreach($fsNav as $var=>$val) { // setup additional template variables
   $faq->set_nav($var,$val);

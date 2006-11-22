@@ -25,7 +25,8 @@ $fsIdxTpl = "toc.tpl";     // template file for the index
 
 #--[ PlugIns ]--
 $fsPlugDir = "plugins/";
-include($fsPlugDir."sql.inc"); // SQL Highliter
+$fsPlugIn[] = "sql";       // SQL Highliter
+$fsPlugIn[] = "sh";        // Shell Highliter
 
 #--[ Misc ]--
 $fsIncDir = "include/";    // where the class files are located. Leave empty
