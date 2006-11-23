@@ -25,6 +25,7 @@ $fsIdxTpl = "toc.tpl";     // template file for the index
 
 #--[ PlugIns ]--
 $fsPlugDir = "plugins/";
+$fsPlugIn[] = "php";       // PHP Highliter
 $fsPlugIn[] = "sql";       // SQL Highliter
 $fsPlugIn[] = "sh";        // Shell Highliter
 
