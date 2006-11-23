@@ -29,7 +29,9 @@
    GLOBAL $sql;
    if (strpos(trim($string),"--")===0) { // comment
      return "<span class='prg_comment'>$string</span>";
+     $string = htmlspecialchars($string);
    }
+   $string = htmlspecialchars($string,ENT_NOQUOTES);
    // commonwords need to be replaced first - or they break all HTML formating
    $string   = preg_replace($sql->commonwords,"<span class='prg_common'>\\1</span>",$string);
    $string   = preg_replace($sql->keywords,"<span class='prg_key'>\\1</span>",$string);
