@@ -10,6 +10,7 @@ v0.1.2
 + added plugin interface
 + added SQL hilite plugin
 + added Shell hilite plugin
++ added PHP hilite plugin
 + added some more makros to the macros.inc file
 ! worked around the problem that "$1" in input textfiles always got lost
   (replaced it by &#36;)
