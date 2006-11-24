@@ -22,13 +22,6 @@ include("config.inc");
 include($fsMacros);
 include($fsFdir.$fsTrans);
 tplInit();
-require_once ($fsIncDir."class.htmlfaq.inc");
-$faq = new htmlfaq($fsTplDir,$fsTplFile,$fsTocStyle);
-
-#==================================================[ Activate the PlugIns ]===
-for ($fmpc=0;$fmpc<count($fsPlugIn);++$fmpc) {
-  include($fsPlugDir.$fsPlugIn[$fmpc].".inc");
-}
 
 #=========================================================[ TOC or Topic? ]===
 if (isset($_REQUEST["topic"])) {
@@ -36,6 +29,15 @@ if (isset($_REQUEST["topic"])) {
 } else {
   $topic = "index";
   $fsTocStyle = $fsITocStyle;
+}
+
+#=======================================================[ Load the engine ]===
+require_once ($fsIncDir."class.htmlfaq.inc");
+$faq = new htmlfaq($fsTplDir,$fsTplFile,$fsTocStyle);
+
+#==================================================[ Activate the PlugIns ]===
+for ($fmpc=0;$fmpc<count($fsPlugIn);++$fmpc) {
+  include($fsPlugDir.$fsPlugIn[$fmpc].".inc");
 }
 
 #==========================================================[ Do the Topic ]===
