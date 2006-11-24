@@ -1,0 +1,82 @@
+# HowTos for iFaqMaker
+#=========================================================[ Create PlugIns ]===
+[title|1|plugins]
+How to create a PlugIn
+
+[text]
+A few PlugIns are already shipped with the distribution, e.g. the HiLite PlugIn
+for SQL or PHP code. If you like these, but miss one - feel free to create it -
+and then don't forget to send it to me, so I can include it with the next
+release!
+
+[text]
+Let's assume you need a HiLite PlugIn for Perl (<code>.pl</code>) scripts here,
+and we go through the process step-by-step on how to create the PlugIn. First,
+you need the lists of keywords to hilite. That means a few files containing
+one keyword per line. Our PlugIn will use these files to set up regular
+expressions to match. So you generate e.g. 3 files: One for the keywords
+(function names etc.), one for keywords that should hilite with a different
+color, and one for "common tokens". While the first two will be matched as
+whole words only, the latter will be even matched if they are part of a word.
+Name the files according to the PlugIn - in our case, this would be
+<code>pl.*</code>.
+
+[text]
+Now we start programing our PlugIn. To have an easy start, we use an existing
+PlugIn file as template - let's take the SQL PlugIn here. So we make a copy
+of the <code>sql.inc</code> and call it <code>pl.inc</code>. Then open
+<code>pl.inc</code> in some editor, and change the necessary things:
+
+[text]
+<ul>
+ <li>Adjust the description in the header</li>
+ <li>rename the function names: replace "sqlfile" by "plfile", "sqlhilite"
+     by "plhilite"</li>
+ <li>replace all occurences of <code>$sql-&gt;</code> by <code>$pl-&gt;</code></li>
+ <li>correct the keyword files in the setup block</li>
+ <li>add the new PlugIn to the <code>config.inc</code> file</li>
+</ul>
+
+[text]
+In the normal case, that's all to do - so your PlugIn is ready to use now!
+However, sometimes there's a little more work needed, as e.g. it was with the
+PHP HiLite PlugIn, where some problems arose. So I will give you some hints
+in the next chapter:
+
+[title|2|pluginhints]
+Hints and troubleshooting on PlugIn generation
+
+[text]
+<b>Size of keyword files.</b> If the syntax you want to hilite has quite a lot
+of keywords, the files may grow accordingly. This means, when you are finished
+creating your PlugIn according to above map, and want to try it, you just see
+a bunch of error messages stating something about a too large regular expression.
+In this case you need to split up the keyword file causing the problem (usually
+the biggest one) into two or more pieces, and adjust your <code>.inc</code>
+file. See the <code>php.inc</code> for example, where I needed to split the
+keywords in two parts.
+
+[text]
+<b>Order of keywords.</b> While this is completely unimportant for all of the
+files matching complete words, it is important for what I called "common
+tokens" above. Since these are also matched against parts of words, the first
+matching keyword will be used. Assuming you had the words "or" and "for" in
+your list in exaclty this order, "or" would be hilited always, but the "f" from
+"for" never. Place the longest word first to avoid this. In short, this means
+if you order the "common list" by word length, this should do the job.
+
+[text]
+<b>Special characters.</b> To avoid trouble showing the content in the browser,
+as a first step our PlugIn calls the <code>htmlspecialchars()</code> function
+on the input text. This means, if you want to match one of the characters
+&gt;, &lt;, &amp;, you must put their html entity in your keyword files, i.e.
+&amp;gt;, &amp;lt;, &amp;amp;.
+
+[text]
+<b>Escape RegExp special chars.</b> Also regular expressions have some special
+characters, which can cause problems here. These you have to escape (place a
+backslash in front). Some of the most common are the slash (write "\/" instead
+of "/" here), the backslash itself, all kind of brackets. You may have to
+consult PHPs manual for a complete list. In general, these characters won't
+appear in your keyword lists, but may appear in the "common tokens". So for
+most cases, you just may refer to one of the existing "common tokens" lists.
