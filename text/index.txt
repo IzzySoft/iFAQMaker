@@ -6,4 +6,5 @@
 <ul>
  <li><A HREF="{_SERVER["PHP_SELF"]}?topic=docu">*docu#</A></li>
  <li>*faqmaker# <A HREF="{_SERVER["PHP_SELF"]}?topic=demofiles">*demofiles#</A></li>
+ <li><A HREF="{_SERVER["PHP_SELF"]}?topic=howto">How to ...</A> with *pfaqmaker#</li>
 </ul>
