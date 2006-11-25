@@ -231,6 +231,36 @@ To tell a translator, I used the old German "BTX style": so a word that starts
 with an asterisk (*) and ends with a hash (#) is considered a translator. Again,
 no spaces are allowed between the * and the #.
 
+#------------------------------=[ PlugIns ]=--
+[title|3|plugins]
+PlugIns
+
+[text]
+PlugIns for *pfaqmaker# are a special case of the <a href="#placeholder">Placeholders</a>
+discussed above. You can compare them to makros accepting a parameter. Some
+PlugIns already ship with the distribution, and their usage shall be shortly
+explained here:
+
+[text]
+{fmParamTabOpen}<tr><th>Makro-Code</th><th>Description</th></tr>
+ <tr><td><code>&#123;sqlfile("sample.sql")&#125;</code></td>
+     <td>Content of <code>sample.sql</code> will be displayed inline with SQL
+         hilited. A link will be provided as well to download the source of
+         <code>sample.sql</code></td></tr>
+ <tr><td><code>&#123;shfile("sample.sh")&#125;</code></td>
+     <td>Same as above for the Shell file <code>sample.sh</code></td></tr>
+ <tr><td><code>&#123;phpfile("sample.php")&#125;</code></td>
+     <td>Same as above for the PHP file <code>sample.php</code>, using the
+         built-in hilite function from PHP</td></tr>
+ <tr><td><code>&#123;phpfile2("sample.php")&#125;</code></td>
+     <td>Same as above for the PHP file <code>sample.php</code>, using an
+         alternative hilite function</td></tr>
+{fmParamTabClose}
+
+[text]
+An example for the usage of one of these PlugIns you can find on the
+<a href="{_SERVER["PHP_SELF"]}?topic=demofiles">Demo Files</a> page.
+
 #-----------------------------=[ Comments ]=--
 [title|3|comments]
 Comments inside the input file
