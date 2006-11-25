@@ -42,7 +42,7 @@
    $string   = preg_replace($php->keywords2,"<span class='prg_key'>\\1</span>",$string);
    $string   = preg_replace($php->typewords,"<span class='prg_type'>\\1</span>",$string);
    $string   = preg_replace($php->constants,"<span class='prg_type'>\\1</span>",$string);
-   return $string;
+   return str_replace("{","&#123;",$string);
  }
  function mkfile($name,$internal=TRUE) {
    if ($internal) {
