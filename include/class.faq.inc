@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # iFAQMaker                                (c) 2004-2006 by Itzchak Rehberg #
+ # iFAQMaker                                (c) 2004-2007 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
  # http://www.qumran.org/homes/izzy/                                         #
  # ------------------------------------------------------------------------- #
@@ -107,7 +107,7 @@ class faq {
   for ($k=0;$k<$this->blocks;++$k) {
    $content = $this->block[$k]->content;
    $content = str_replace("\$","&#36;",$content);
-   if ( preg_match_all("/\{\S+\}/",$content,$matches) ) { // replace variables
+   if ( preg_match_all("/\{[^\s\}]+\}/",$content,$matches) ) { // replace variables
     for ($i=0;$i<count($matches[0]);$i++) {
       $var = substr($matches[0][$i],1,strlen($matches[0][$i])-2);
       $pos = strpos($var,"->");
