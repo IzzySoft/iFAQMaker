@@ -3,7 +3,7 @@ $Id$
 History for iFAQMaker
 =====================
 
-v0.1.2
+v0.1.2 (10.02.2007)
 -------------------
 ! lines from the textfile are no longer truncated for output (this broke
   preformatted text in previous versions)
