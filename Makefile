@@ -4,16 +4,21 @@
 DESTDIR=
 prefix=/usr/local
 datarootdir=$(DESTDIR)$(prefix)/share
-datadir=$(datarootdir)
+datadir=$(datarootdir)/ifaqmaker
 INSTALL=
 
+WEBROOT=$(DESTDIR)/var/www
+LINKTO=$(WEBROOT)/ifaqmaker
+
 install: installdirs
-	cp -pr * $(datarootdir)/ifaqmaker
-	rm -f $(datarootdir)/ifaqmaker/Makefile
+	cp -pr * $(datadir)
+	rm -f $(datadir)/Makefile
+	if [ ! -e $(LINKTO) ]; then ln -s $(datadir) $(LINKTO); fi
 
 installdirs:
-	mkdir -p $(datarootdir)/ifaqmaker
+	mkdir -p $(datadir)
+	if [ ! -e $(WEBROOT) ]; then mkdir -p $(WEBROOT); fi
 
 uninstall:
-	rm -rf $(datarootdir)/ifaqmaker
+	rm -rf $(datadir)
 
