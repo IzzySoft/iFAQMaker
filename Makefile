@@ -20,7 +20,7 @@ installdirs:
 	if [ ! -e $(WEBROOT) ]; then mkdir -p $(WEBROOT); fi
 
 uninstall:
-	rm -rf $(datadir)
 	linkstat=`readlink $(LINKTO)`
 	if [ "$linkstat" = "$(datadir)" ]; then rm -f $(LINKTO); fi
+	rm -rf $(datadir)
 
