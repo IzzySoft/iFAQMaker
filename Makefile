@@ -21,4 +21,6 @@ installdirs:
 
 uninstall:
 	rm -rf $(datadir)
+	linkstat=`readlink $(LINKTO)`
+	if [ "$linkstat" = "$(datadir)" ]; then rm -f $(LINKTO); fi
 
