@@ -1,8 +1,8 @@
 <?php
  #############################################################################
- # iFAQMaker                                (c) 2004-2006 by Itzchak Rehberg #
- # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
- # http://www.qumran.org/homes/izzy/                                         #
+ # iFAQMaker                                (c) 2004-2007 by Itzchak Rehberg #
+ # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
+ # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -23,8 +23,8 @@ require_once(dirname(__FILE__)."/class.faq.inc");
  * @package Api
  * @class htmlfaq
  * @extends faq
- * @author Izzy (izzysoft@qumran.org)
- * @copyright (c) 2004 by Itzchak Rehberg and IzzySoft
+ * @author Izzy (izzysoft AT qumran DOT org)
+ * @copyright (c) 2004-2007 by Itzchak Rehberg and IzzySoft
  */
 class htmlfaq extends faq {
 
@@ -63,9 +63,8 @@ class htmlfaq extends faq {
  function footer() {
    echo '<DIV ALIGN="center" STYLE="margin-top:7px;margin-bottom:7px;">'
       . '<IMG SRC="'.$this->img->w3c.'" ALT="w3c" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-right:3px">'
-      . '<SPAN CLASS="footer">Created by <A HREF="http://www.qumran.org/homes/izzy/software/faqmaker/" '
-      . 'TARGET="_blank">iFAQMaker</A> v'.$this->version.' &copy; 2004-2006 by <A '
-      . 'HREF="http://www.qumran.org/homes/izzy/" TARGET="_blank">Itzchak Rehberg</A> '
+      . '<SPAN CLASS="footer">Created by <A HREF="http://projects.izzysoft.de/?topic=progs;subject=ifaqmaker" '
+      . 'TARGET="_blank">iFAQMaker</A> v'.$this->version.' &copy; 2004-2007 by Itzchak Rehberg '
       . '&amp; <A HREF="http://www.izzysoft.de/" TARGET="_blank">IzzySoft</A></SPAN>'
       . '<IMG SRC="'.$this->img->logo.'" ALT="IzzySoft" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-left:3px"></DIV>';
  }

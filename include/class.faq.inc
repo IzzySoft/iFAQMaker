@@ -1,8 +1,8 @@
 <?php
  #############################################################################
  # iFAQMaker                                (c) 2004-2007 by Itzchak Rehberg #
- # written by Itzchak Rehberg <izzysoft@qumran.org>                          #
- # http://www.qumran.org/homes/izzy/                                         #
+ # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
+ # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
  # This program is free software; you can redistribute and/or modify it      #
  # under the terms of the GNU General Public License (see doc/LICENSE)       #
@@ -22,8 +22,8 @@ require_once(dirname(__FILE__)."/class.template.inc");
 /** FAQ Generator
  * @package Help
  * @class faq
- * @author Izzy (izzysoft@qumran.org)
- * @copyright (c) 2001-2004 by Itzchak Rehberg and IzzySoft
+ * @author Izzy (izzysoft AT qumran DOT org)
+ * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
  */
 class faq {
 
