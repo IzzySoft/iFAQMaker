@@ -121,12 +121,22 @@ class faq {
           $tdir = $_SERVER["DOCUMENT_ROOT"].dirname($_SERVER["PHP_SELF"])."/";
           $tvar = substr($var,0,$tpos);
           $rvar = $tvar($tdir.substr($var,$tpos+2,strpos($var,")")-$tpos-3));
-        } else { $rvar = $GLOBALS[$var]; }
+        } else {
+	  if (preg_match_all("/^(.*)\[\"(.*)\"\]\[\"(.*)\"\]$/",$var,$matchme)) { // var["x"]["y"]
+	    $rvar = $GLOBALS[$matchme[1][0]][$matchme[2][0]][$matchme[3][0]];
+	  } elseif (preg_match_all("/^(.*)\[\"(.*)\"\]$/",$var,$matchme)) { // var["x"]
+	    $rvar = $GLOBALS[$matchme[1][0]][$matchme[2][0]];
+	  } else {
+	    $rvar = $GLOBALS[$var];
+	  }
+        }
       }
       $var  = str_replace("/","\/",$var); // need to addslashes for
       $var  = str_replace('"','\"',$var); // preg_replace (the functions
       $var  = str_replace('(','\(',$var); // addslashes and quotemeta do
       $var  = str_replace(')','\)',$var); // not help here
+      $var  = str_replace('[','\[',$var);
+      $var  = str_replace(']','\]',$var);
       $rvar = str_replace("\$","&#36;",$rvar);
       $content = preg_replace("/\{$var\}/",$rvar,$content);
     }

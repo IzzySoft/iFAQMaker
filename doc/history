@@ -3,6 +3,11 @@ $Id$
 History for iFAQMaker
 =====================
 
+v0.1.3
+-------------------
+* variable replacement (curly braces) now also works fine for arrays up to
+  two dimensions
+
 v0.1.2 (10.02.2007)
 -------------------
 ! lines from the textfile are no longer truncated for output (this broke
