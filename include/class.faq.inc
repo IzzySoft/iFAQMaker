@@ -172,7 +172,6 @@ class faq {
     }
    }
    if ($this->acronym_count > 0) { // replace acronyms
-#   die("<b>Replacing acronyms...</b><br>");
      $content = preg_replace($this->acronym_def,$this->acronym_res,$content);
    }
    $this->block[$k]->content = $content;
