@@ -290,3 +290,24 @@ is the extension you specified with <code>$fsFext</code> in your
 <code><a href="#config_inc">config.inc</a></code> file) is reserved: at this
 place you should create your "central page", containing links to all your
 FAQ files. This "index" file has the same structure as any normal input file.
+
+#---------------------------------------------------------------[ Acronyms ]---
+[title|2|acronyms]
+Acronym Support
+
+[text]
+You can also have <i>Acronym Support</i> with your documents: Provided a file
+with acronym definitions (see the example <code>acronyms.txt</code> provided
+with the distribution: Each line lists one acronym, followed by a space,
+followed by the acronyms description - which should contain no double quotes),
+all defined acronyms found in your input files will be replaced by an
+appropriate HTML acronym tag. So it is marked in the HTML output, and if the
+user moves the mouse over it, the explanation is shown. Simply move your mouse
+pointer over the word HTML here to see the effect.
+
+[text]
+To use your own acronym definitions (or to diable acronym support), see the
+<code>index.php</code> file: In our example code, <code>acronyms.txt</code> is
+loaded using the <code>acronyms()</code> method of the FAQ class by the line
+<code>$faq-&gt;acronyms("acronyms.txt");</code>. You can put your own file here,
+or comment out the line to disable acronym support.

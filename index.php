@@ -34,6 +34,7 @@ if (isset($_REQUEST["topic"])) {
 #=======================================================[ Load the engine ]===
 require_once ($fsIncDir."class.htmlfaq.inc");
 $faq = new htmlfaq($fsTplDir,$fsTplFile,$fsTocStyle);
+$faq->acronyms("acronyms.txt");
 
 #==================================================[ Activate the PlugIns ]===
 for ($fmpc=0;$fmpc<count($fsPlugIn);++$fmpc) {

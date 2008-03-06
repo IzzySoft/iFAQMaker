@@ -14,6 +14,8 @@ A.toc { background: transparent; }
 .tablink { color: #000000; }
 .footer a { background: transparent; color:#00f; }
 
+acronym { cursor:help; }
+
 TABLE { background-color: #fff; }
 .navtable { background-color: #69f; }
 H1,H2 { color: #0000ff; }

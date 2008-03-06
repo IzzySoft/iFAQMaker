@@ -44,6 +44,29 @@ class faq {
   $this->img->w3c  = "w3c.jpg";
   $this->toc = $toc;
   $this->toclist = "";
+  $this->acronym_def = array();
+  $this->acronym_res = array();
+  $this->acronym_count = 0;
+ }
+
+ /** Read in acronym definitions
+  * @method acronyms
+  * @param string filename
+  */
+ function acronyms($file) {
+   if (file_exists($file)) {
+     $list = file($file);
+     $lc = count($list);
+     for ($i=0,$k=-1;$i<$lc;++$i) {
+       if (substr(trim($list[$i]),0,1)=="#") continue; // skip comments
+       ++$k;
+       $pos = strpos($list[$i]," ");
+       $nam = substr($list[$i],0,$pos);
+       $this->acronym_def[$k] = "/\b$nam/";
+       $this->acronym_res[$k] = '<acronym title="'.str_replace('"',"'",trim(substr($list[$i],$pos +1))).'">'.$nam."</acronym>";
+     }
+   }
+   $this->acronym_count = $k;
  }
 
  /** Read the input file
@@ -147,6 +170,10 @@ class faq {
       $rvar = lang($var);
       $content = preg_replace("/\*$var\#/",$rvar,$content);
     }
+   }
+   if ($this->acronym_count > 0) { // replace acronyms
+#   die("<b>Replacing acronyms...</b><br>");
+     $content = preg_replace($this->acronym_def,$this->acronym_res,$content);
    }
    $this->block[$k]->content = $content;
   }
