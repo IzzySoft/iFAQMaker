@@ -64,7 +64,7 @@ class htmlfaq extends faq {
    echo '<DIV ALIGN="center" STYLE="margin-top:7px;margin-bottom:7px;">'
       . '<IMG SRC="'.$this->img->w3c.'" ALT="w3c" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-right:3px">'
       . '<SPAN CLASS="footer">Created by <A HREF="http://projects.izzysoft.de/?topic=progs;subject=ifaqmaker" '
-      . 'TARGET="_blank">iFAQMaker</A> v'.$this->version.' &copy; 2004-2007 by Itzchak Rehberg '
+      . 'TARGET="_blank">iFAQMaker</A> v'.$this->version.' &copy; 2004-2008 by Itzchak Rehberg '
       . '&amp; <A HREF="http://www.izzysoft.de/" TARGET="_blank">IzzySoft</A></SPAN>'
       . '<IMG SRC="'.$this->img->logo.'" ALT="IzzySoft" WIDTH="14" HEIGHT="14" ALIGN="middle" STYLE="margin-left:3px"></DIV>';
  }

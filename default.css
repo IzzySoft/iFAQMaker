@@ -18,6 +18,15 @@ acronym { cursor:help; }
 
 TABLE { background-color: #fff; }
 .navtable { background-color: #69f; }
+.wikitable {
+ border-collapse:collapse;
+ margin-left:auto;
+ margin-right:auto;
+}
+.wikith {
+ background-color:#eaeaea;
+ color:#000;
+}
 H1,H2 { color: #0000ff; }
 TH {
  font-family: sans-serif;
@@ -48,7 +57,7 @@ TD { font-size: 12px; background-color: #fff; }
 P { margin-top:0; margin-bottom:0; }
 CODE { font-size: 12px; font-family: monospace; color: #603; }
 
-.code, .code_markup {
+pre, .code, .code_markup {
  font-family: monospace; 
  font-size: 8pt; 
  background-color: #eee;

@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # iFAQMaker                                (c) 2004-2007 by Itzchak Rehberg #
+ # iFAQMaker                                (c) 2004-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -34,7 +34,7 @@ class faq {
   * @param string toc style of the "table of contents" (ul|ol), empty for no toc
   */
  function faq($dir,$file,$toc="") {
-  $this->version = "0.1.2";
+  $this->version = "0.1.3";
   $this->t = new Template($dir);
   $this->t->set_file(array("main"=>"$file"));
   $this->t->set_block("main","titleblock","titlelist");
@@ -47,6 +47,8 @@ class faq {
   $this->acronym_def = array();
   $this->acronym_res = array();
   $this->acronym_count = 0;
+  $this->wiki_count = 0;
+  $this->use_wiki = FALSE;
  }
 
  /** Read in acronym definitions
@@ -58,6 +60,7 @@ class faq {
      $list = file($file);
      $lc = count($list);
      for ($i=0,$k=-1;$i<$lc;++$i) {
+       if (trim($list[$i])=="") continue; // skip empty lines
        if (substr(trim($list[$i]),0,1)=="#") continue; // skip comments
        ++$k;
        $pos = strpos($list[$i]," ");
@@ -67,6 +70,35 @@ class faq {
      }
    }
    $this->acronym_count = $k;
+ }
+
+ /** Read in Wiki definitions
+  * @method wikidef
+  * @param string filename
+  */
+ function wikidef($file) {
+   if (file_exists($file)) {
+     $list = file($file);
+     $lc = count($list);
+     for ($i=0,$k=-1;$i<$lc;++$i) {
+       if (trim($list[$i])=="") continue; // skip empty lines
+       if (substr(trim($list[$i]),0,1)=="#") continue; // skip comments
+       ++$k;
+       $ar = explode(";",$list[$i]);
+       $this->wiki_def[$k] = $ar[0];
+       $this->wiki_res[$k] = trim($ar[1]);
+     }
+   }
+   $this->wiki_count = $k;
+ }
+
+ /** Enable/Disable Wiki replacement
+  * @method wiki
+  * @param boolean enable
+  */
+ function wiki($enable) {
+   if ($enable && $this->wiki_count > 0) $this->use_wiki = TRUE;
+   else $this->use_wiki = FALSE;
  }
 
  /** Read the input file
@@ -130,6 +162,9 @@ class faq {
   for ($k=0;$k<$this->blocks;++$k) {
    $content = $this->block[$k]->content;
    $content = str_replace("\$","&#36;",$content);
+   if ($this->use_wiki && $this->block[$k]->type != "title") { // parse wiki style elements
+     $content = preg_replace($this->wiki_def,$this->wiki_res,$content);
+   }
    if ( preg_match_all("/\{[^\s\}]+\}/",$content,$matches) ) { // replace variables
     for ($i=0;$i<count($matches[0]);$i++) {
       $var = substr($matches[0][$i],1,strlen($matches[0][$i])-2);

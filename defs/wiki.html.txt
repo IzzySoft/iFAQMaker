@@ -1,0 +1,63 @@
+# Wiki 2 HTML definitions
+# Search;Replace
+###############################################################################
+#=====================================================[ pre-formatted text ]===
+/^\{\{\{$(.*?)^\}\}\}$/ms;<pre>$1</pre>
+/\{\{\{(.*?)\}\}\}/m;<code>$1</code>
+
+#=================================================[ simple text formatting ]===
+/'''''(.*?)'''''/m;<b><i>$1</i></b>
+/'''(.*?)'''/m;<b>$1</b>
+/''(.*?)''/m;<i>$1</i>
+/__(.*?)__/m;<u>$1</u>
+/~~(.*?)~~/m;<del>$1</del>
+/\^(.*?)\^/m;<sup>$1</sup>
+/\,\,(.*?)\,\,/m;<sub>$1</sub>
+
+#===============================================================[ headings ]===
+/^\={6}(.*?)\={6}\s*$/m;<h6>$1</h6>
+/^\={5}(.*?)\={5}\s*$/m;<h5>$1</h5>
+/^\={4}(.*?)\={4}\s*$/m;<h4>$1</h4>
+/^\={3}(.*?)\={3}\s*$/m;<h3>$1</h3>
+/^\={2}(.*?)\={2}\s*$/m;<h2>$1</h2>
+/^\={1}(.*?)\={1}\s*$/m;<h1>$1</h1>
+
+#=============================================================[ paragraphs ]===
+/\[\[br\]\]/i;<br>
+/^\-\-\-\-$/m;<hr>
+/^$/m;<br><br>
+
+#==================================================================[ lists ]===
+# Still missing - has to be implemented next, including:
+# count of leading spaces: level (second level only if there is first level, etc.)
+# first sign "*": <ul>
+# first sign "a": <ol style="list-style-type: lower-alpha">
+# first sign "i": <ol style="list-style-type: lower-roman">
+# first sign "A": <ol style="list-style-type: upper-alpha">
+# first sign "I": <ol style="list-style-type: upper-roman">
+# first sign "1": <ol style="list-style-type: decimal">
+
+# definition lists???
+# blockquotes? (one or more lines, each starting with 2 spaces)
+# discussion citations?
+
+#=================================================================[ tables ]===
+#-----------------------------------------------[ simple style (trac-like) ]---
+/([^!\|]\n)^\|\|/m;$1<table border='1' class='wikitable'><tr><td>
+/\|\|(\n[^!\|])/m;</td></tr></table>$1
+/^\|\|/m;<tr><td>
+/\|\|(\n)/;</td></tr>$1
+/\|\|/;</td><td>
+#----------------------------------------------[ additional: table headers ]---
+/([^!\|]\n)^!!/m;$1<table border='1' class='wikitable'><tr><th class='wikith'>
+/!!($^[^!\|])/m;</th></tr></table>$1
+/^!!/m;<tr><th class='wikith'>
+/!!(\n)/;</th></tr>$1
+/!!/;</th><th class='wikith'>
+
+#=================================================================[ images ]===
+/\[\[image\((.*?)\)\]\]/i;<img src='$1' alt=''>
+
+#==================================================================[ links ]===
+/\[\[(\S*)\s*(.*?)\]\]/;<a href="$1">$2</a>
+

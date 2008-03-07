@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # iFAQMaker                                (c) 2004-2007 by Itzchak Rehberg #
+ # iFAQMaker                                (c) 2004-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -34,7 +34,9 @@ if (isset($_REQUEST["topic"])) {
 #=======================================================[ Load the engine ]===
 require_once ($fsIncDir."class.htmlfaq.inc");
 $faq = new htmlfaq($fsTplDir,$fsTplFile,$fsTocStyle);
-$faq->acronyms("acronyms.txt");
+$faq->acronyms("defs/acronyms.txt");
+$faq->wikidef("defs/wiki.html.txt");
+$faq->wiki(1);
 
 #==================================================[ Activate the PlugIns ]===
 for ($fmpc=0;$fmpc<count($fsPlugIn);++$fmpc) {

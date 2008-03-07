@@ -309,5 +309,21 @@ pointer over the word HTML here to see the effect.
 To use your own acronym definitions (or to diable acronym support), see the
 <code>index.php</code> file: In our example code, <code>acronyms.txt</code> is
 loaded using the <code>acronyms()</code> method of the FAQ class by the line
-<code>$faq-&gt;acronyms("acronyms.txt");</code>. You can put your own file here,
-or comment out the line to disable acronym support.
+<code>$faq-&gt;acronyms("defs/acronyms.txt");</code>. You can put your own file
+there, or comment out the line to disable acronym support.
+
+#-------------------------------------------------------------------[ Wiki ]---
+[title|2|wiki]
+Wiki Syntax
+
+[text]
+Some basic ''Wiki syntax'' is also supported. This is mainly based on the Wiki
+syntax used by [[http://trac.edgewall.org/wiki/WikiFormatting Trac]] (with a few
+exceptions) - but not all of this is implemented yet. Please see the
+[[?topic=wiki Wiki example]] (you can compare this with the {{{text/wiki.txt}}}
+input file, which is even diplayed inside on the example page) for what is
+already there.
+
+[text]
+Wiki replacement will only be done in <code>[text]</code> blocks. By the way:
+These two paragraphs already use Wiki syntax...
