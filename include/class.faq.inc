@@ -49,6 +49,19 @@ class faq {
   $this->acronym_count = 0;
   $this->wiki_count = 0;
   $this->use_wiki = FALSE;
+  // functions whose (only) parameter references a file relative to the script:
+  $this->file_funcs = array();
+  $this->ffcount = 0;
+ }
+
+ /** Register a function whose (only) parameter references a file relative to the script
+  *  (mainly used for the HiLite PlugIns)
+  * @method register_filefunc
+  * @param string function_name
+  */
+ function register_filefunc($func) {
+   $this->file_funcs[] = $func;
+   ++$this->ffcount;
  }
 
  /** Read in acronym definitions
@@ -171,22 +184,25 @@ class faq {
     for ($i=0;$i<count($matches[0]);$i++) {
       $var = $matches[1][$i];
       $pos = strpos($var,"->");
-      if ($pos) {
+      if ($pos) { // this is an object {obj->var}
        $obj = substr($var,0,$pos); $prop = substr($var,$pos+2);
        GLOBAL $$obj;
        $rvar = $$obj->$prop;
       } else {
         $tpos = strpos($var,"(");
-        if ($tpos) {
+        if ($tpos) { // this is a function {func()}
           $tdir = $_SERVER["DOCUMENT_ROOT"].dirname($_SERVER["PHP_SELF"])."/";
           $tvar = substr($var,0,$tpos);
-          $rvar = $tvar($tdir.substr($var,$tpos+2,strpos($var,")")-$tpos-3));
-        } else {
+          if (in_array($tvar,$this->file_funcs)) // convert relative path to absolute
+            $rvar = $tvar($tdir.substr($var,$tpos+2,strpos($var,")")-$tpos-3));
+          else
+            $rvar = $tvar(substr($var,$tpos+2,strpos($var,")")-$tpos-3));
+        } else { // must be a variable ({var} or {var[]}
 	  if (preg_match_all("/^(.*)\[\"(.*)\"\]\[\"(.*)\"\]$/",$var,$matchme)) { // var["x"]["y"]
 	    $rvar = $GLOBALS[$matchme[1][0]][$matchme[2][0]][$matchme[3][0]];
 	  } elseif (preg_match_all("/^(.*)\[\"(.*)\"\]$/",$var,$matchme)) { // var["x"]
 	    $rvar = $GLOBALS[$matchme[1][0]][$matchme[2][0]];
-	  } else {
+	  } else { // scalar ({var}) is the only thing left
 	    $rvar = $GLOBALS[$var];
 	  }
         }

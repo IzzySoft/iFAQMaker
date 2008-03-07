@@ -12,6 +12,10 @@ v0.1.3
 ! additional settings (level, aname) for [title] should have been optional.
   Now they are optional again.
 + Macros now can contain white spaces (e.g. a string for function parameters)
+* plugin functions having a relative "path/to/file" as their (only) parameter
+  now are registered with the class - and only for those this parameter will
+  converted to an absolute path now (to allow other functions to work as
+  expected)
 
 v0.1.2 (10.02.2007)
 -------------------

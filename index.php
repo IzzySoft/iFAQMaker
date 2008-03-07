@@ -41,6 +41,8 @@ $faq->wiki(1);
 #==================================================[ Activate the PlugIns ]===
 for ($fmpc=0;$fmpc<count($fsPlugIn);++$fmpc) {
   include($fsPlugDir.$fsPlugIn[$fmpc].".inc");
+  if (function_exists($fsPlugIn[$fmpc]."file"))
+    $faq->register_filefunc($fsPlugIn[$fmpc]."file");
 }
 
 #==========================================================[ Do the Topic ]===
