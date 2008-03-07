@@ -145,10 +145,6 @@ class faq {
 	  $this->block[$blocknr]->name  = $set[5]; // <a name=...>
         else
 	  $this->block[$blocknr]->name  = $blocknr;
-      } else {
-        $this->block[$blocknr]->type  = $hit[1];
-        $this->block[$blocknr]->level = 1; // <h$level>
-	$this->block[$blocknr]->name  = $blocknr; // <a name=...>
       }
       $this->block[$blocknr]->content = "";
       if ($hit[1]=="eof") break;
@@ -171,9 +167,9 @@ class faq {
    if ($this->use_wiki && $this->block[$k]->type != "title") { // parse wiki style elements
      $content = preg_replace($this->wiki_def,$this->wiki_res,$content);
    }
-   if ( preg_match_all("/\{[^\s\}]+\}/",$content,$matches) ) { // replace variables
+   if ( preg_match_all("/\{(.+?)\}/",$content,$matches) ) { // replace variables
     for ($i=0;$i<count($matches[0]);$i++) {
-      $var = substr($matches[0][$i],1,strlen($matches[0][$i])-2);
+      $var = $matches[1][$i];
       $pos = strpos($var,"->");
       if ($pos) {
        $obj = substr($var,0,$pos); $prop = substr($var,$pos+2);

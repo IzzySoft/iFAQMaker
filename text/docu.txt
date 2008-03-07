@@ -1,11 +1,11 @@
 # iFAQMaker documentation
 #==================================================================[ Intro ]===
-[title|1|intro]
+[title]
 Introduction
 
 #-------------------------------------------------------------[ What Is... ]---
 [title|2|whatis]
-What is {faqmaker}?
+What is *faqmaker#?
 
 [text]
 *pfaqmaker# is a simple PHP script to ease the managments of FAQs. Basically,
@@ -209,9 +209,10 @@ refered by this - which is useful if you want to link to other categories
 (input files) available to the same *pfaqmaker# instance, by creating a href
 looking like
 <code>&lt;A HREF="&#123;_SERVER["PHP_SELF"]&#125;?topic=other_file"&gt;</code>.
-Inside the curly braces there must be <b><i>no spaces</i></b> - or the makro
-will not work. Easy reason: Spaces are not allowed in variable names.
-Again, for details you may want to have a look at the
+Inside the curly braces, you can put a variable name (with <b><i>no spaces</i></b>
+- or the makro will not work for an easy reason: Spaces are not allowed in variable
+names), or even a function call (spaces are permitted here, e.g. for a string
+argument). Again, for details you may want to have a look at the
 <a href="{_SERVER["PHP_SELF"]}?topic=demofiles">Demo Input Files</a> for
 *pfaqmaker#.
 
