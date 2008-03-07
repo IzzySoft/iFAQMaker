@@ -134,11 +134,17 @@ class faq {
     $mark = preg_match("/^\[(\S+)\]$/",$uline,$hit);
     if ($mark) {
       ++$blocknr;
-      $desc = preg_match("/([^\|]+)\|([^\|]*)\|(\S*)$/",$hit[1],$set);
-      if ($desc) { // Special settings for this block
+      $desc = preg_match("/([^\|]+)(\|([^\|]*)(\|(\S*))?)?$/",$hit[1],$set);
+      if ($desc) { // Special settings for this block (usually [title|<level>|<name>])
         $this->block[$blocknr]->type  = $set[1];
-        $this->block[$blocknr]->level = $set[2]; // <h$level>
-	$this->block[$blocknr]->name  = $set[3]; // <a name=...>
+        if (!empty($set[2]))
+          $this->block[$blocknr]->level = $set[3]; // <h$level>
+        else
+          $this->block[$blocknr]->level = 1;
+        if (!empty($set[4]))
+	  $this->block[$blocknr]->name  = $set[5]; // <a name=...>
+        else
+	  $this->block[$blocknr]->name  = $blocknr;
       } else {
         $this->block[$blocknr]->type  = $hit[1];
         $this->block[$blocknr]->level = 1; // <h$level>

@@ -1,0 +1,39 @@
+# Wiki Test
+[title|1|display]
+Wiki Example Displayed
+
+[text]
+This file shows you which Wiki Syntax elements are already supported: You can
+have '''bold''', ''italic'', and '''''bold italic''''' text, __underline__ or
+~~strikethrough~~ words, create ^superscript^ or ,,subscript,, elements. Code
+fragments can be placed {{{inline}}} - or on a separate paragraph like that:
+{{{
+echo "one line of code"
+echo "another line"
+echo "this looks better separate than inline"
+}}}
+You can also use headers (&lt;h1&gt; to &lt;h6&gt; in HTML) with Wiki syntax:
+= Eins =
+== Zwei ==
+=== Drei ===
+==== Vier ====
+===== Fünf =====
+====== Sechs ======
+And if you feel your text is long enough, you may make a[[br]]break. Or even a
+horizontal ruler:
+----
+Tables are also possible:
+
+!!Column 1!!Column 2!!
+||Next row||Next column||
+
+Furthermore, you can have [[http://www.izzysoft.de/ links]] and embed images [[image(islogo.gif)]]
+
+More elements may be added with the time, and existing ones may be extended...
+
+[title|1|src]
+Wiki Example Source
+
+[text]
+And that is what the input file looks like:
+{shfile("text/wiki.txt")}
