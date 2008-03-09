@@ -3,7 +3,7 @@ $Id$
 History for iFAQMaker
 =====================
 
-v0.1.3
+v0.1.3 (09.03.2008)
 -------------------
 * variable replacement (curly braces) now also works fine for arrays up to
   two dimensions

@@ -20,10 +20,10 @@ require_once(dirname(__FILE__)."/class.template.inc");
 
 #====================================================[ Build page content ]===
 /** FAQ Generator
- * @package Help
+ * @package Api
  * @class faq
  * @author Izzy (izzysoft AT qumran DOT org)
- * @copyright (c) 2001-2007 by Itzchak Rehberg and IzzySoft
+ * @copyright (c) 2001-2008 by Itzchak Rehberg and IzzySoft
  */
 class faq {
 
@@ -338,18 +338,23 @@ class faq {
  }
 
 /** Type of the TOC: "ol", "ul" or "" (no TOC)
+ * @class faq
  * @attribute private string toc
  */
 /** Content of the TOC (to be parsed into {toc})
+ * @class faq
  * @attribute private string toclist
  */
 /** Content of the parsed input file (one line per cell)
+ * @class faq
  * @attribute private array input
  */
 /** Content of the parsed input file, splitted into blocks
+ * @class faq
  * @attribute private array block
  */
 /** Number of blocks created
+ * @class faq
  * @attribute private integer blocks
  */
 
