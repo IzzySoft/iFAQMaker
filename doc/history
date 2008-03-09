@@ -3,6 +3,11 @@ $Id$
 History for iFAQMaker
 =====================
 
+v0.1.4
+-------------------
++ added some hacker protection (you still should use register_globals=off
+  in your php.ini for better protection!)
+
 v0.1.3 (09.03.2008)
 -------------------
 * variable replacement (curly braces) now also works fine for arrays up to

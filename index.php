@@ -13,6 +13,19 @@
  /* $Id$ */
 
 #=========================================================[ Configuration ]===
+#----------------------------------------------------[ Request parameters ]---
+$id    = $_REQUEST["id"];
+$toc   = $_REQUEST["toc"];
+$coll  = $_REQUEST["coll"];
+$topic = $_REQUEST["topic"];
+#-------------------------------------------------------[ Security Checks ]---
+if ( (empty($id) && $id!="0") || preg_match("/[^\d]/",$id) ) unset($id);
+if ( empty($toc) ) $toc = 0;
+elseif ( preg_match("/[^\d]/",$toc) ) $toc = 1;
+if ( preg_match("/[^\w]/",$coll) ) unset ($coll);
+if ( preg_match("/[^\w]/",$topic) ) unset ($topic);
+
+#----------------------------------------------------------[ Translations ]---
 function lang($str) { // interprete "TransTable"
   GLOBAL $fsLang;
   if (isset($fsLang[$str])) return $fsLang[$str];
@@ -24,9 +37,7 @@ include($fsFdir.$fsTrans);
 tplInit();
 
 #=========================================================[ TOC or Topic? ]===
-if (isset($_REQUEST["topic"])) {
-  $topic = $_REQUEST["topic"];
-} else {
+if (!isset($topic)) {
   $topic = "index";
   $fsTocStyle = $fsITocStyle;
 }
