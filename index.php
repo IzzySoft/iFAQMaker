@@ -37,10 +37,12 @@ include($fsFdir.$fsTrans);
 tplInit();
 
 #=========================================================[ TOC or Topic? ]===
+if (!file_exists($fsFdir."$topic.$fsFext")) unset($topic);
 if (!isset($topic)) {
   $topic = "index";
   $fsTocStyle = $fsITocStyle;
 }
+$infile = $fsFdir."$topic.$fsFext";
 
 #=======================================================[ Load the engine ]===
 require_once ($fsIncDir."class.htmlfaq.inc");
@@ -57,7 +59,6 @@ for ($fmpc=0;$fmpc<count($fsPlugIn);++$fmpc) {
 }
 
 #==========================================================[ Do the Topic ]===
-$infile = $fsFdir."$topic.$fsFext";
 $fsTitle .= ": ";
 if ($topic) { $fsTitle .= lang($topic); } else { $fsTitle .= lang("index"); }
 
