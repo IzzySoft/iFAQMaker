@@ -29,11 +29,13 @@ if ( preg_match("/[^\w]/",$topic) ) unset ($topic);
 function lang($str) { // interprete "TransTable"
   GLOBAL $fsLang;
   if (isset($fsLang[$str])) return $fsLang[$str];
-  return ucfirst($str);
+  return ucwords(str_replace("_"," ",$str));
 }
+
+#--------------------------------------------------------------[ Includes ]---
 include("config.inc");
 include($fsMacros);
-include($fsFdir.$fsTrans);
+if (file_exists($fsFdir.$fsTrans)) include($fsFdir.$fsTrans);
 tplInit();
 
 #=========================================================[ TOC or Topic? ]===
