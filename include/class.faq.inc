@@ -71,6 +71,7 @@ class faq {
  function acronyms($file) {
    if (file_exists($file)) {
      $list = file($file);
+     @rsort($list);
      $lc = count($list);
      for ($i=0,$k=-1;$i<$lc;++$i) {
        if (trim($list[$i])=="") continue; // skip empty lines
@@ -78,7 +79,7 @@ class faq {
        ++$k;
        $pos = strpos($list[$i]," ");
        $nam = substr($list[$i],0,$pos);
-       $this->acronym_def[$k] = "/\b$nam/";
+       $this->acronym_def[$k] = "/\b$nam(?![^\b]+\<\/acronym)/";
        $this->acronym_res[$k] = '<acronym title="'.str_replace('"',"'",trim(substr($list[$i],$pos +1))).'">'.$nam."</acronym>";
      }
    }
