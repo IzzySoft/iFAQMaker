@@ -33,6 +33,22 @@ Furthermore, you can have [[http://www.izzysoft.de/ links]] and embed images [[i
   automatically by just starting each line with two spaces - but you should
   have an empty line before and after that. This is a so called blockquote.
 
+ * Here we have an unordered list item
+ * and one more item in the same list
+ * number three also
+
+ a. an ordered list
+ a. with a second item
+ a. and also a third one
+
+ I. roman style
+ I. with a second item
+ I. and a third one
+
+ 1. decimal is also possible
+ 1. with several
+ 1. items
+
 More elements may be added with the time, and existing ones may be extended...
 
 [title|1|src]

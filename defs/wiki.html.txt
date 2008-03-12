@@ -22,24 +22,32 @@
 /^\={2}(.*?)\={2}\s*$/m;<h2>$1</h2>
 /^\={1}(.*?)\={1}\s*$/m;<h1>$1</h1>
 
+#==================================================================[ lists ]===
+#--------------------------------------------------[ simple unordered list ]---
+/^$(\n) \* (.*)\n/m;<ul>$1 <li>$2</li>$1
+/^ \* (.*)$(\n)^$/m; <li>$1</li>$2</ul>$2
+/^ \* (.*)$/m; <li>$1</li>
+
+#---------------------------------------------------[ simple ordered lists ]---
+/^$(\n) a\. (.*)\n/m;<ol style='list-style-type:lower-alpha'>$1 <li>$2</li>$1
+/^$(\n) A\. (.*)\n/m;<ol style='list-style-type:upper-alpha'>$1 <li>$2</li>$1
+/^$(\n) i\. (.*)\n/m;<ol style='list-style-type:lower-roman'>$1 <li>$2</li>$1
+/^$(\n) I\. (.*)\n/m;<ol style='list-style-type:upper-roman'>$1 <li>$2</li>$1
+/^$(\n) 1\. (.*)\n/m;<ol style='list-style-type:decimal'>$1 <li>$2</li>$1
+/^ [aAiI1]\. (.*)$(\n)(?! [aAiI1\*])/m; <li>$1</li>$2</ol>
+/^ [aAiI1]\. (.*)$/m; <li>$1</li>
+
+# Still missing are nested (multi-level) lists
+# count of leading spaces: level (second level only if there is first level, etc.)
+
+# definition lists???
+# discussion citations?
+
 #=============================================================[ paragraphs ]===
 /^$(\n)(([ ]{2}(?<!(a\.|A\.|i\.|I\.|\* )).+\n)+?)(?![^\S\n])/m;<blockquote>$2</blockquote>
 /\[\[br\]\]/i;<br>
 /^\-\-\-\-$/m;<hr>
 /^$/m;<br><br>
-
-#==================================================================[ lists ]===
-# Still missing - has to be implemented next, including:
-# count of leading spaces: level (second level only if there is first level, etc.)
-# first sign "*": <ul>
-# first sign "a": <ol style="list-style-type: lower-alpha">
-# first sign "i": <ol style="list-style-type: lower-roman">
-# first sign "A": <ol style="list-style-type: upper-alpha">
-# first sign "I": <ol style="list-style-type: upper-roman">
-# first sign "1": <ol style="list-style-type: decimal">
-
-# definition lists???
-# discussion citations?
 
 #=================================================================[ tables ]===
 #-----------------------------------------------[ simple style (trac-like) ]---
