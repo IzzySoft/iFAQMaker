@@ -13,12 +13,12 @@ echo "another line"
 echo "this looks better separate than inline"
 }}}
 You can also use headers (&lt;h1&gt; to &lt;h6&gt; in HTML) with Wiki syntax:
-= Eins =
-== Zwei ==
-=== Drei ===
-==== Vier ====
-===== Fünf =====
-====== Sechs ======
+= One =
+== Two ==
+=== Three ===
+==== Four ====
+===== Five =====
+====== Six ======
 And if you feel your text is long enough, you may make a[[br]]break. Or even a
 horizontal ruler:
 ----
@@ -28,6 +28,10 @@ Tables are also possible:
 ||Next row||Next column||
 
 Furthermore, you can have [[http://www.izzysoft.de/ links]] and embed images [[image(islogo.gif)]]
+
+  If you want to quote somebody, you can have that paragraph indented
+  automatically by just starting each line with two spaces - but you should
+  have an empty line before and after that. This is a so called blockquote.
 
 More elements may be added with the time, and existing ones may be extended...
 

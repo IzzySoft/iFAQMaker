@@ -23,6 +23,7 @@
 /^\={1}(.*?)\={1}\s*$/m;<h1>$1</h1>
 
 #=============================================================[ paragraphs ]===
+/^$(\n)(([ ]{2}(?<!(a\.|A\.|i\.|I\.|\* )).+\n)+?)(?![^\S\n])/m;<blockquote>$2</blockquote>
 /\[\[br\]\]/i;<br>
 /^\-\-\-\-$/m;<hr>
 /^$/m;<br><br>
@@ -38,7 +39,6 @@
 # first sign "1": <ol style="list-style-type: decimal">
 
 # definition lists???
-# blockquotes? (one or more lines, each starting with 2 spaces)
 # discussion citations?
 
 #=================================================================[ tables ]===
