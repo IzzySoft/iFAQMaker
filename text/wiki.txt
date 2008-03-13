@@ -1,59 +1,156 @@
-# Wiki Test
-[title|1|display]
-Wiki Example Displayed
+# Wiki Syntax
+[title|1|intro]
+Wiki Syntax
 
 [text]
-This file shows you which Wiki Syntax elements are already supported: You can
-have '''bold''', ''italic'', and '''''bold italic''''' text, __underline__ or
-~~strikethrough~~ words, create ^superscript^ or ,,subscript,, elements. Code
-fragments can be placed {{{inline}}} - or on a separate paragraph like that:
+Since v0.1.3 of *pfaqmaker# it is possible to use wiki syntax in your input files.
+As already mentioned in the [[?topic=docu#wiki documentation]], this is mainly based
+on the Wiki syntax used by [[http://trac.edgewall.org/wiki/WikiFormatting Trac]]
+(with a few exceptions) - but not all of this is implemented yet. This page
+will explain the elements available.
+
+[title|1|chars]
+Character formatting
+
+[text]
+
+!!you type!!you get!!
+||!''italics!''||''italics''||
+||!'''bold!'''||'''bold'''||
+||!'''''bold italics!'''''||'''''bold italics'''''||
+||!__underline!__||__underline__||
+||!~~strikethrough!~~||~~strikethrough~~)||
+||x!^superscript!^||x^superscript^||
+||x!,,subscript!,,||x,,subscript,,||
+||!{{{inline code&#125;&#125;&#125;||{{{inline code}}}||
+
+[title|1|paragraph]
+Paragraphs
+
+[title|2|pblock]
+Block quotes
+
+[text]
+You can easily create a block quote by simply precede each line by two spaces.
+Note, that an empty line in between will cause a new block to start. Example:
+
+  This is an example blockquote. In the input text file, it consists of 2 lines,
+  which may be displayed as a single line if your browser window is too large...
+
+[title|2|breakblock]
+Line breaks and code blocks
+
+[text]
+![[br]] Linebreak[[br]]
+For a code block, the braces must start at the very beginning of the line,
+immediately followed by a newline:[[br]]
+!{{{[[br]]
+Code block[[br]]
+(multi line)[[br]]
+}}}[[br]]
 {{{
-echo "one line of code"
-echo "another line"
-echo "this looks better separate than inline"
+code block
+(multi line)
 }}}
-You can also use headers (&lt;h1&gt; to &lt;h6&gt; in HTML) with Wiki syntax:
-= One =
-== Two ==
-=== Three ===
-==== Four ====
-===== Five =====
-====== Six ======
-And if you feel your text is long enough, you may make a[[br]]break. Or even a
-horizontal ruler:
-----
-Tables are also possible:
+#
+[title|2|heads]
+Headings
+
+[text]
+!= Header 1 =[[br]]
+= Header 1 =
+to[[br]]
+!====== Header 6 ======[[br]]
+====== Header 6 ======
+
+[title|1|links]
+Links
+
+[text]
+![[http://www.izzysoft.de/]] ([[http://www.izzysoft.de/]]) [[br]]
+![[http://www.izzysoft.de/ IzzySoft]] ([[http://www.izzysoft.de/ IzzySoft]])[[br]]
+![[image(islogo.gif)]] ([[image(islogo.gif)]])[[br]]
+![[image:islogo.gif]] ([[image:islogo.gif]])[[br]]
+
+[title|1|tables]
+Tables
+
+[text]
+&#33;!Column 1&#33;!Column 2!&#33;[[br]]
+&#124;|Data 1&#124;|Data 2|&#124;[[br]]
+&#124;|Data 3&#124;|Data 4&#124;|
 
 !!Column 1!!Column 2!!
-||Next row||Next column||
+||Data 1||Data 2||
+||Data 3||Data 4||
 
-Furthermore, you can have [[http://www.izzysoft.de/ links]] and embed images [[image(islogo.gif)]]
-
-  If you want to quote somebody, you can have that paragraph indented
-  automatically by just starting each line with two spaces - but you should
-  have an empty line before and after that. This is a so called blockquote.
-
- * Here we have an unordered list item
- * and one more item in the same list
- * number three also
-
- a. an ordered list
- a. with a second item
- a. and also a third one
-
- I. roman style
- I. with a second item
- I. and a third one
-
- 1. decimal is also possible
- 1. with several
- 1. items
-
-More elements may be added with the time, and existing ones may be extended...
-
-[title|1|src]
-Wiki Example Source
+[title|1|lists]
+Lists
 
 [text]
-And that is what the input file looks like:
-{shfile("text/wiki.txt")}
+At the moment, *pfaqmaker# only supports simple lists (one level only - no
+nesting). But you can have unordered lists and different types of ordered
+lists. A list item always starts with a blank - followed by the list indicator,
+another blank, and finally the item itself - all on one line. There must be no
+empty line between items belonging to the same block - or a new block will be
+started. Some examples:
+
+[title|2|ulist]
+Unordered list
+
+[text]
+* item 1[[br]]
+* item 2[[br]]
+* item 3[[br]]
+
+ * item 1
+ * item 2
+ * item 3
+[title|2|nlist]
+Numbered list
+
+[text]
+1. item 1[[br]]
+1. item 2[[br]]
+1. item 3[[br]]
+
+ 1. item 1
+ 1. item 2
+ 1. item 3
+[title|2|rlist]
+Roman Style
+
+[text]
+The example shows lowercase Roman numbers - of course you can also use
+uppercase here (i.e. an ''I'' instead of the ''i''):
+
+i. item 1[[br]]
+i. item 2[[br]]
+i. item 3[[br]]
+
+ i. item 1
+ i. item 2
+ i. item 3
+[title|2|alist]
+Alpha-lists
+
+[text]
+The example shows lowercase letters - of course you can also use
+uppercase here (i.e. an ''A'' instead of the ''a''):
+
+a. item 1[[br]]
+a. item 2[[br]]
+a. item 3[[br]]
+
+ a. item 1
+ a. item 2
+ a. item 3
+
+[title|1|misc]
+Miscellaneous
+
+[text]
+A horizontal ruler is created by placing 4 (or more) dashes (-) at the beginning
+of a line, followed by a line break:[[br]]
+!----
+----
