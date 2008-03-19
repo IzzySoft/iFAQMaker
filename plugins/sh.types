@@ -1,3 +1,4 @@
+adduser
 arch
 ash
 awk
@@ -71,6 +72,7 @@ sleep
 sort
 stty
 su
+sudo
 sync
 taper
 tar

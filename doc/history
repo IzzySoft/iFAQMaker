@@ -3,7 +3,7 @@ $Id$
 History for iFAQMaker
 =====================
 
-v0.1.4
+v0.1.4 (19.03.2008)
 -------------------
 + added some hacker protection (you still should use register_globals=off
   in your php.ini for better protection!)

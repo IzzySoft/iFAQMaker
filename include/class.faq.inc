@@ -34,7 +34,7 @@ class faq {
   * @param string toc style of the "table of contents" (ul|ol), empty for no toc
   */
  function faq($dir,$file,$toc="") {
-  $this->version = "0.1.3";
+  $this->version = "0.1.4";
   $this->t = new Template($dir);
   $this->t->set_file(array("main"=>"$file"));
   $this->t->set_block("main","titleblock","titlelist");
@@ -171,6 +171,15 @@ class faq {
   if (!empty($title)) $this->t->set_var("listtitle",$title);
  } // end parse_input()
 
+ /** Wiki Replacements
+  * @method private wiki_replace
+  * @param string text
+  * @return string replaced
+  */
+ function wiki_replace($content) {
+   return preg_replace($this->wiki_def,$this->wiki_res,$content);
+ }
+
  /** Replace variables and translations
   * @method private textReplace
   */
@@ -179,7 +188,7 @@ class faq {
    $content = $this->block[$k]->content;
    $content = str_replace("\$","&#36;",$content);
    if ($this->use_wiki && $this->block[$k]->type != "title") { // parse wiki style elements
-     $content = preg_replace($this->wiki_def,$this->wiki_res,$content);
+     $content = $this->wiki_replace($content);
    }
    if ( preg_match_all("/\{(.+?)\}/",$content,$matches) ) { // replace variables
     for ($i=0;$i<count($matches[0]);$i++) {
