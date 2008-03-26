@@ -54,6 +54,14 @@ class faq {
   $this->ffcount = 0;
  }
 
+ /** Set type of input file
+  * @method setInputType
+  * @param string type Supported types: block (default), flat
+  */
+ function setInputType($type) {
+   $this->inputType = $type;
+ }
+
  /** Register a function whose (only) parameter references a file relative to the script
   *  (mainly used for the HiLite PlugIns)
   * @method register_filefunc
@@ -115,6 +123,34 @@ class faq {
    else $this->use_wiki = FALSE;
  }
 
+ /** Set TOC from WikiSyntax
+  * @method setWikiToc
+  */
+ function setWikiToc() {
+   if (empty($this->toc)) return; // no TOC requested
+   if (preg_match_all("/^(\={1,6})([^\=]+?)\={1,6}$/ms",$this->wikiText,$matches)) {
+     $mc = count($matches[0]); $lastlevel = 0; $list = $this->toc; $this->wikiToc = "";
+     for ($i=0;$i<$mc;++$i) {
+       $level = strlen($matches[1][$i]);
+       if ($level > $lastlevel) {
+         $diff = $level - $lastlevel;
+         for ($k=0;$k<$diff;++$k) $this->wikiToc .= "<$list>";
+       } elseif ($level < $lastlevel) {
+         $diff = $lastlevel - $level;
+         for ($k=0;$k<$diff;++$k) $this->wikiToc .= "</$list>";
+       }
+       $href = str_replace(array(" ",'"',"'","{","}","[","]","(",")","^","'","?","!","."),array(""),$matches[2][$i]);
+       $this->wikiToc .= "<li><a href='#$href'>".$matches[2][$i]."</li>";
+       $this->wikiText = str_replace($matches[0][$i],"<a name='$href'></a>\n".$matches[0][$i],$this->wikiText);
+       $lastlevel = $level;
+     }
+     while ($lastlevel>0) {
+       $this->wikiToc .= "</$list>";
+       --$lastlevel;
+     }
+   }
+ }
+
  /** Read the input file
   * @method private fileRead
   * @param string filename
@@ -139,8 +175,21 @@ class faq {
   */
  function parseInput($file,$title="") {
   $this->fileRead($file);
-  $blocknr = -1;
   $lines = count($this->input);
+  if ($this->inputType=="flat") {
+    $this->wikiText = "";
+    for ($i=0;$i<$lines;++$i) {
+      $line = $this->input[$i];
+      $uline = trim($line);
+      if ( substr($uline,0,1) == "#" ) continue; // strip off comments
+      $this->wikiText .= $line;
+    }
+    $this->setWikiToc();
+    $this->wikiText = $this->wiki_replace($this->wikiText);
+    $this->wikiText = $this->textReplace($this->wikiText);
+    return;
+  }
+  $blocknr = -1;
   for ($i=0;$i<$lines;++$i) {
     $line = $this->input[$i];
     $uline = trim($line);
@@ -167,7 +216,15 @@ class faq {
     }
   }
   $this->blocks = ++$blocknr;
-  $this->textReplace();
+  for ($k=0;$k<$this->blocks;++$k) {
+   $content = $this->block[$k]->content;
+   $content = str_replace("\$","&#36;",$content);
+   if ($this->use_wiki && $this->block[$k]->type != "title") { // parse wiki style elements
+     $content = $this->wiki_replace($content);
+   }
+   $this->block[$k]->content = $this->textReplace($content);
+  }
+
   if (!empty($title)) $this->t->set_var("listtitle",$title);
  } // end parse_input()
 
@@ -182,14 +239,10 @@ class faq {
 
  /** Replace variables and translations
   * @method private textReplace
+  * @param string input
+  * @return string output
   */
- function textReplace() {
-  for ($k=0;$k<$this->blocks;++$k) {
-   $content = $this->block[$k]->content;
-   $content = str_replace("\$","&#36;",$content);
-   if ($this->use_wiki && $this->block[$k]->type != "title") { // parse wiki style elements
-     $content = $this->wiki_replace($content);
-   }
+ function textReplace($content) {
    if ( preg_match_all("/(?<!\{)\{{1}(?!\{)(.+?)\}{1}(?!\})/",$content,$matches) ) { // replace variables
     for ($i=0;$i<count($matches[0]);$i++) {
       $var = $matches[1][$i];
@@ -237,14 +290,23 @@ class faq {
    if ($this->acronym_count > 0) { // replace acronyms
      $content = preg_replace($this->acronym_def,$this->acronym_res,$content);
    }
-   $this->block[$k]->content = $content;
-  }
+   return $content;
  } // end textReplace
 
  /** Output the text
   * @method public parseOutput
   */
  function parseOutput() {
+  if ($this->inputType=="flat") {
+    if (empty($this->toc)) $this->set_nav("toclist","");
+    else {
+      $this->set_nav("toc",$this->wikiToc);
+      $this->t->parse("toclist","tocblock");
+    }
+    $this->set_nav("titlelist","<tr><td>".$this->wikiText."</td></tr>");
+    $this->t->pparse("out","main");
+    return;
+  }
   $text_open = FALSE; $block_open = 0; $toclevel = 0; $list = $this->toc;
   for ($i=0;$i<$this->blocks;++$i) {
     switch (strtolower($this->block[$i]->type)) {
@@ -306,7 +368,7 @@ class faq {
   $this->t->pparse("out","main");
  }
 
- /** Set template variables. Wrapper around pagemaker::t::set_var
+ /** Set template variables. Wrapper around this::t::set_var
   * @method public set_nav
   * @param string name name of template variable
   * @param string content value of template variable

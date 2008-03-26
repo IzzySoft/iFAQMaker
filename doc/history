@@ -7,6 +7,9 @@ v0.1.5
 -------------------
 ! variable replacement (single curly braces) no longer interferes with wiki
   block formatting (triple curly braces)
++ now it is also possible to use input files without any blocks ([title],[text])
+  defined (e.g. "plain wiki" pages). Simply set the input type to "flat" using
+  setInputType("flat") before calling parseInput().
 
 v0.1.4 (19.03.2008)
 -------------------

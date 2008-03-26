@@ -23,9 +23,9 @@
    <TR><TD><DIV ALIGN="justify">{text}</DIV></TD></TR>
    <!-- END textblock -->
    <TR><TD HEIGHT="7"></TD></TR>
-  </TABLE>
+  </TABLE></TD></TR>
 <!-- END titleblock -->
-</TD></TR></TABLE>
+</TABLE>
 
 </TD></TR></TABLE>
 </DIV>

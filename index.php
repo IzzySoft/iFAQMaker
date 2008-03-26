@@ -69,6 +69,7 @@ if (is_array($fsNav)) {
   $faq->set_nav($var,$val);
  }
 }
+#$faq->setInputType("flat");
 $faq->parseInput($infile,lang($topic));
 $faq->header($fsTitle,$fsCssFile,$fsCharSet);
 $faq->parseOutput();
