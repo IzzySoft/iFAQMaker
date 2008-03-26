@@ -3,6 +3,11 @@ $Id$
 History for iFAQMaker
 =====================
 
+v0.1.5
+-------------------
+! variable replacement (single curly braces) no longer interferes with wiki
+  block formatting (triple curly braces)
+
 v0.1.4 (19.03.2008)
 -------------------
 + added some hacker protection (you still should use register_globals=off
