@@ -11,6 +11,7 @@ v0.1.5
   defined (e.g. "plain wiki" pages). Simply set the input type to "flat" using
   setInputType("flat") - which implies enabling the wiki mode - before calling
   parseInput().
+* Stylesheet adaptions - mainly for the "flat" wiki input files
 
 v0.1.4 (19.03.2008)
 -------------------
