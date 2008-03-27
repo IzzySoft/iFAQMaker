@@ -56,9 +56,11 @@ class faq {
 
  /** Set type of input file
   * @method setInputType
-  * @param string type Supported types: block (default), flat
+  * @param string type Supported types: block (default), flat (implicates wiki
+  *        mode to be enabled)
   */
  function setInputType($type) {
+   if ($type=="flat") $this->wiki(TRUE);
    $this->inputType = $type;
  }
 
@@ -185,8 +187,8 @@ class faq {
       $this->wikiText .= $line;
     }
     $this->setWikiToc();
-    $this->wikiText = $this->wiki_replace($this->wikiText);
-    $this->wikiText = $this->textReplace($this->wikiText);
+    $this->wikiReplace($this->wikiText);
+    $this->textReplace($this->wikiText);
     return;
   }
   $blocknr = -1;
@@ -219,30 +221,30 @@ class faq {
   for ($k=0;$k<$this->blocks;++$k) {
    $content = $this->block[$k]->content;
    $content = str_replace("\$","&#36;",$content);
-   if ($this->use_wiki && $this->block[$k]->type != "title") { // parse wiki style elements
-     $content = $this->wiki_replace($content);
+   if ($this->block[$k]->type != "title") { // parse wiki style elements
+     $this->wikiReplace($content);
    }
-   $this->block[$k]->content = $this->textReplace($content);
+   $this->textReplace($content);
+   $this->block[$k]->content = $content;
   }
 
   if (!empty($title)) $this->t->set_var("listtitle",$title);
  } // end parse_input()
 
  /** Wiki Replacements
-  * @method private wiki_replace
-  * @param string text
-  * @return string replaced
+  * @method private wikiReplace
+  * @param reference string text text to parse (passed by reference)
   */
- function wiki_replace($content) {
-   return preg_replace($this->wiki_def,$this->wiki_res,$content);
+ function wikiReplace(&$content) {
+   if ($this->use_wiki)
+     $content = preg_replace($this->wiki_def,$this->wiki_res,$content);
  }
 
  /** Replace variables and translations
   * @method private textReplace
-  * @param string input
-  * @return string output
+  * @param reference string text passed by reference
   */
- function textReplace($content) {
+ function textReplace(&$content) {
    if ( preg_match_all("/(?<!\{)\{{1}(?!\{)(.+?)\}{1}(?!\})/",$content,$matches) ) { // replace variables
     for ($i=0;$i<count($matches[0]);$i++) {
       $var = $matches[1][$i];
@@ -290,7 +292,6 @@ class faq {
    if ($this->acronym_count > 0) { // replace acronyms
      $content = preg_replace($this->acronym_def,$this->acronym_res,$content);
    }
-   return $content;
  } // end textReplace
 
  /** Output the text

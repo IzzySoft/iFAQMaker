@@ -9,7 +9,8 @@ v0.1.5
   block formatting (triple curly braces)
 + now it is also possible to use input files without any blocks ([title],[text])
   defined (e.g. "plain wiki" pages). Simply set the input type to "flat" using
-  setInputType("flat") before calling parseInput().
+  setInputType("flat") - which implies enabling the wiki mode - before calling
+  parseInput().
 
 v0.1.4 (19.03.2008)
 -------------------
