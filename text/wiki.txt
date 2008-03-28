@@ -195,7 +195,7 @@ A horizontal ruler is created by placing 4 (or more) dashes (-) at the beginning
 of a line, followed by a line break:
 {fmParamTabOpen}
 <tr><th class="help" style="color:black">you type</th><th class="help" style="color:black">you get</th></tr>
-<tr><td style="padding:10px">!----</td><td style="padding:10px">
+<tr><td style="padding:10px">----</td><td style="padding:10px">
 ----
 </td></tr>
 {fmParamTabClose}

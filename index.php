@@ -13,18 +13,6 @@
  /* $Id$ */
 
 #=========================================================[ Configuration ]===
-#----------------------------------------------------[ Request parameters ]---
-$id    = $_REQUEST["id"];
-$toc   = $_REQUEST["toc"];
-$coll  = $_REQUEST["coll"];
-$topic = $_REQUEST["topic"];
-#-------------------------------------------------------[ Security Checks ]---
-if ( (empty($id) && $id!="0") || preg_match("/[^\d]/",$id) ) unset($id);
-if ( empty($toc) ) $toc = 0;
-elseif ( preg_match("/[^\d]/",$toc) ) $toc = 1;
-if ( preg_match("/[^\w]/",$coll) ) unset ($coll);
-if ( preg_match("/[^\w]/",$topic) ) unset ($topic);
-
 #----------------------------------------------------------[ Translations ]---
 function lang($str) { // interprete "TransTable"
   GLOBAL $fsLang;
@@ -35,13 +23,13 @@ function lang($str) { // interprete "TransTable"
 #--------------------------------------------------------------[ Includes ]---
 include("config.inc");
 include($fsMacros);
-if (file_exists($fsFdir.$fsTrans)) include($fsFdir.$fsTrans);
+if (file_exists($fsTrans)) include($fsTrans);
 tplInit();
 
 #=========================================================[ TOC or Topic? ]===
 if (!file_exists($fsFdir."$topic.$fsFext")) unset($topic);
 if (!isset($topic)) {
-  $topic = "index";
+  $topic = $default_topic;
   $fsTocStyle = $fsITocStyle;
 }
 $infile = $fsFdir."$topic.$fsFext";
@@ -49,9 +37,9 @@ $infile = $fsFdir."$topic.$fsFext";
 #=======================================================[ Load the engine ]===
 require_once ($fsIncDir."class.htmlfaq.inc");
 $faq = new htmlfaq($fsTplDir,$fsTplFile,$fsTocStyle);
-$faq->acronyms("defs/acronyms.txt");
-$faq->wikidef("defs/wiki.html.txt");
-$faq->wiki(1);
+$faq->acronyms($default_acronyms);
+$faq->wikidef($default_wikidef);
+$faq->wiki($default_wikimode);
 
 #==================================================[ Activate the PlugIns ]===
 for ($fmpc=0;$fmpc<count($fsPlugIn);++$fmpc) {
@@ -69,7 +57,7 @@ if (is_array($fsNav)) {
   $faq->set_nav($var,$val);
  }
 }
-#$faq->setInputType("flat");
+$faq->setInputType($default_inputtype);
 $faq->parseInput($infile,lang($topic));
 $faq->header($fsTitle,$fsCssFile,$fsCharSet);
 $faq->parseOutput();
