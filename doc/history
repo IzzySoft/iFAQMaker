@@ -12,9 +12,14 @@ v0.1.5
   setInputType("flat") - which implies enabling the wiki mode - before calling
   parseInput().
 * Stylesheet adaptions - mainly for the "flat" wiki input files
-* enabled collection support - now you can group files into collections, which
++ enabled collection support - now you can group files into collections, which
   are simply sub-directories to your $fsFdir - which should help you organize
   larger amounts of FAQs
+* "translation system" has been moved into the class. NOTE: file format of the
+  translation input (usually "trans.inc") has been changed!!! The format now
+  is "origin;translation" (one pair per line), "origin" being the string to
+  translate (may NOT contain semicolon), translation being the replacement (may
+  contain semicolon or whatever usual characters)
 
 v0.1.4 (19.03.2008)
 -------------------

@@ -67,7 +67,7 @@ class faq {
  /** Register a function whose (only) parameter references a file relative to the script
   *  (mainly used for the HiLite PlugIns)
   * @method register_filefunc
-  * @param string function_name
+  * @param string function_name name of the function to register
   */
  function register_filefunc($func) {
    $this->file_funcs[] = $func;
@@ -76,7 +76,7 @@ class faq {
 
  /** Read in acronym definitions
   * @method acronyms
-  * @param string filename
+  * @param string filename name of the file to read the acronym definitions from
   */
  function acronyms($file) {
    if (file_exists($file)) {
@@ -98,7 +98,7 @@ class faq {
 
  /** Read in Wiki definitions
   * @method wikidef
-  * @param string filename
+  * @param string filename name of the file to read the wiki definitions from
   */
  function wikidef($file) {
    if (file_exists($file)) {
@@ -155,7 +155,7 @@ class faq {
 
  /** Read the input file
   * @method private fileRead
-  * @param string filename
+  * @param string filename name of the file to read
   */
  function fileRead($file) {
   $this->input = file($file);
@@ -171,7 +171,7 @@ class faq {
   *  <li><i>&lt;blockname&gt;</i> is one of "title", "text" or "eof"</li>
   *  <li><i>level</i> is an integer (or empty) for e.g. &lt;H1&gt;</li>
   *  <li><i>hname</i> is a name (&lt;A NAME="<i>name</i>"&gt;) for references</li></ul>
-  *  everything after the <li>&tl;blockname&gt;</i> is optional.
+  *  everything after the <code>&lt;blockname&gt;</code> is optional.
   * @method public parseInput
   * @param string filename input file name
   */
@@ -383,7 +383,7 @@ class faq {
   *  of other words)
   *  Used for the hilite plugins
   * @method public regexp_pattern_word_file
-  * @param string name of the file holding the keywords, one by line
+  * @param string file name of the file holding the keywords, one by line
   * @return string regexp pattern
   */
  function regexp_pattern_word_file($file) {
@@ -402,7 +402,7 @@ class faq {
   *  other words)
   *  Used for the hilite plugins
   * @method public regexp_pattern_file
-  * @param string name of the file holding the keywords, one by line
+  * @param string file name of the file holding the keywords, one by line
   * @return string regexp pattern
   */
  function regexp_pattern_file($file) {
@@ -410,7 +410,10 @@ class faq {
    return "/".substr($keywords,3,strlen($keywords)-7)."/i";
  }
 
- /** Translation Stuff
+ /** Translate a string
+  *  Returns the replacement as defined by the file read with readTrans(). If no
+  *  replacement exists, all underscores are replaced by spaces, and the resulting
+  *  words have their first character uppercased.
   * @method lang
   * @param string input
   * @return string translation
@@ -422,7 +425,7 @@ class faq {
 
  /** Read translations from a file
   * @method readTrans
-  * @param string filename
+  * @param string filename name of the file to read the translations from
   */
  function readTrans($file) {
    $input = file($file);
