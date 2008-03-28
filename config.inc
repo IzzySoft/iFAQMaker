@@ -53,9 +53,9 @@ $fsPlugIn[] = "sh";        // Shell Highliter
 
 #==========================[ Additional placeholders in your template file ]===
 function tplInit() { // we call this AFTER reading the "TransTable"
- GLOBAL $fsNav;
- $fsNav["back"]  = "<A HREF='JavaScript:history.back()'>".lang("back")."</A>";
- $fsNav["index"] = "<A HREF='".$_SERVER["PHP_SELF"]."'>".lang("index")."</A>";
- $fsNav["toc_title"] = lang("toc");
+ GLOBAL $fsNav,$faq;
+ $fsNav["back"]  = "<A HREF='JavaScript:history.back()'>".$faq->lang("back")."</A>";
+ $fsNav["index"] = "<A HREF='".$_SERVER["PHP_SELF"]."'>".$faq->lang("index")."</A>";
+ $fsNav["toc_title"] = $faq->lang("toc");
 }
 ?>

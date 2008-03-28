@@ -285,7 +285,7 @@ class faq {
    if ( preg_match_all("/\*\S+\#/",$content,$matches) ) { // replace translations
     for ($i=0;$i<count($matches[0]);$i++) {
       $var  = substr($matches[0][$i],1,strlen($matches[0][$i])-2);
-      $rvar = lang($var);
+      $rvar = $this->lang($var);
       $content = preg_replace("/\*$var\#/",$rvar,$content);
     }
    }
@@ -408,6 +408,32 @@ class faq {
  function regexp_pattern_file($file) {
    $keywords = $this->regexp_pattern_word_file($file);
    return "/".substr($keywords,3,strlen($keywords)-7)."/i";
+ }
+
+ /** Translation Stuff
+  * @method lang
+  * @param string input
+  * @return string translation
+  */
+ function lang($str) {
+   if (isset($this->trans[$str])) return $this->trans[$str];
+   return ucwords(str_replace("_"," ",$str));
+ }
+
+ /** Read translations from a file
+  * @method readTrans
+  * @param string filename
+  */
+ function readTrans($file) {
+   $input = file($file);
+   $lines = count($input);
+   for ($i=0;$i<$lines;++$i) {
+     $line = trim($input[$i]);
+     if (empty($line)) continue; // skip empty lines
+     if (substr($line,0,1)=="#") continue; // skip comments
+     $pos = strpos($input[$i],";");
+     $this->trans[substr($input[$i],0,$pos)] = substr($input[$i],$pos+1);
+   }
  }
 
 /** Type of the TOC: "ol", "ul" or "" (no TOC)

@@ -12,6 +12,9 @@ v0.1.5
   setInputType("flat") - which implies enabling the wiki mode - before calling
   parseInput().
 * Stylesheet adaptions - mainly for the "flat" wiki input files
+* enabled collection support - now you can group files into collections, which
+  are simply sub-directories to your $fsFdir - which should help you organize
+  larger amounts of FAQs
 
 v0.1.4 (19.03.2008)
 -------------------

@@ -25,7 +25,7 @@ elseif ( preg_match("/[^\d]/",$toc) ) $toc = 1;
 if ( preg_match("/[^\w]/",$coll) ) unset ($coll);
 if ( preg_match("/[^\w]/",$topic) ) unset ($topic);
 # Just in case register_globals is turned on:
-if (isset($fsFDir))    unset($fsFDir);
+if (isset($fsFdir))    unset($fsFdir);
 if (isset($fsTplDir))  unset($fsTplDir);
 if (isset($fsPlugDir)) unset($fsPlugDir);
 ?>

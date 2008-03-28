@@ -13,18 +13,9 @@
  /* $Id$ */
 
 #=========================================================[ Configuration ]===
-#----------------------------------------------------------[ Translations ]---
-function lang($str) { // interprete "TransTable"
-  GLOBAL $fsLang;
-  if (isset($fsLang[$str])) return $fsLang[$str];
-  return ucwords(str_replace("_"," ",$str));
-}
-
-#--------------------------------------------------------------[ Includes ]---
 include("config.inc");
 include($fsMacros);
-if (file_exists($fsTrans)) include($fsTrans);
-tplInit();
+if (!empty($coll)) $fsFdir .= "$coll/";
 
 #=========================================================[ TOC or Topic? ]===
 if (!file_exists($fsFdir."$topic.$fsFext")) unset($topic);
@@ -40,6 +31,8 @@ $faq = new htmlfaq($fsTplDir,$fsTplFile,$fsTocStyle);
 $faq->acronyms($default_acronyms);
 $faq->wikidef($default_wikidef);
 $faq->wiki($default_wikimode);
+if (file_exists($fsTrans)) $faq->readTrans($fsTrans);
+tplInit();
 
 #==================================================[ Activate the PlugIns ]===
 for ($fmpc=0;$fmpc<count($fsPlugIn);++$fmpc) {
@@ -50,7 +43,7 @@ for ($fmpc=0;$fmpc<count($fsPlugIn);++$fmpc) {
 
 #==========================================================[ Do the Topic ]===
 $fsTitle .= ": ";
-if ($topic) { $fsTitle .= lang($topic); } else { $fsTitle .= lang("index"); }
+if ($topic) { $fsTitle .= $faq->lang($topic); } else { $fsTitle .= $faq->lang("index"); }
 
 if (is_array($fsNav)) {
  foreach($fsNav as $var=>$val) { // setup additional template variables
@@ -58,7 +51,7 @@ if (is_array($fsNav)) {
  }
 }
 $faq->setInputType($default_inputtype);
-$faq->parseInput($infile,lang($topic));
+$faq->parseInput($infile,$faq->lang($topic));
 $faq->header($fsTitle,$fsCssFile,$fsCharSet);
 $faq->parseOutput();
 $faq->footer();
