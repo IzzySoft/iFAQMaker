@@ -1,6 +1,6 @@
 <?php
  #############################################################################
- # iFAQMaker                                (c) 2004-2007 by Itzchak Rehberg #
+ # iFAQMaker                                (c) 2004-2008 by Itzchak Rehberg #
  # written by Itzchak Rehberg <izzysoft AT qumran DOT org>                   #
  # http://www.izzysoft.de/                                                   #
  # ------------------------------------------------------------------------- #
@@ -47,6 +47,7 @@
      $output .= shhighlite($infile[$i]);
    }
    $dlfile = basename($name);
+   if (substr($name,0,1)!="/") $name = dirname($_SERVER["SCRIPT_FILENAME"])."/$name";
    $dlname = substr($name,strlen($_SERVER["DOCUMENT_ROOT"]));
    $dllink = "<a href='$dlname'>$dlfile</a>";
    return "<table border='0' align='center'><tr><td><div align='right'>$dllink</div><div class='code_markup'>\n<PRE>$output</PRE>\n</div></td></tr></table>";
