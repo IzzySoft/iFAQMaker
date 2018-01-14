@@ -12,3 +12,8 @@ input files comes from. The main topics iFAQMaker is intended to cover are:
 You can find an API reference in the `doc/api/` sub-directory of this project.
 The documentation itself is using *iFAQMaker*: so simply place the entire
 project inside your web tree, and invoke the `index.php` with your web browser.
+
+**Note:** Except for adding this README, *iFAQMaker* hasn't been updated since
+2008, and probably will not be updated anymore. I've just decided to leave it
+„for reference“ as an „archived repo“ at Github before removing it from my
+server.
