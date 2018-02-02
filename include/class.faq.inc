@@ -33,13 +33,14 @@ class faq {
   * @param string tpl_file Filename of the template file to use
   * @param string toc style of the "table of contents" (ul|ol), empty for no toc
   */
- function faq($dir,$file,$toc="") {
+ public function __construct($dir,$file,$toc="") {
   $this->version = "0.1.5";
   $this->t = new Template($dir);
   $this->t->set_file(array("main"=>"$file"));
   $this->t->set_block("main","titleblock","titlelist");
   $this->t->set_block("titleblock","textblock","textlist");
   $this->t->set_block("main","tocblock","toclist");
+  $this->img = new stdClass();
   $this->img->logo = "islogo.gif";
   $this->img->w3c  = "w3c.jpg";
   $this->toc = $toc;
@@ -200,6 +201,7 @@ class faq {
     if ($mark) {
       ++$blocknr;
       $desc = preg_match("/([^\|]+)(\|([^\|]*)(\|(\S*))?)?$/",$hit[1],$set);
+      if ( !isset($this->block[$blocknr]) ) $this->block[$blocknr] = new stdClass();
       if ($desc) { // Special settings for this block (usually [title|<level>|<name>])
         $this->block[$blocknr]->type  = $set[1];
         if (!empty($set[2]))
@@ -207,9 +209,9 @@ class faq {
         else
           $this->block[$blocknr]->level = 1;
         if (!empty($set[4]))
-	  $this->block[$blocknr]->name  = $set[5]; // <a name=...>
+          $this->block[$blocknr]->name  = $set[5]; // <a name=...>
         else
-	  $this->block[$blocknr]->name  = $blocknr;
+          $this->block[$blocknr]->name  = $blocknr;
       }
       $this->block[$blocknr]->content = "";
       if ($hit[1]=="eof") break;
@@ -263,13 +265,13 @@ class faq {
           else
             $rvar = $tvar(substr($var,$tpos+2,strpos($var,")")-$tpos-3));
         } else { // must be a variable ({var} or {var[]}
-	  if (preg_match_all("/^(.*)\[\"(.*)\"\]\[\"(.*)\"\]$/",$var,$matchme)) { // var["x"]["y"]
-	    $rvar = $GLOBALS[$matchme[1][0]][$matchme[2][0]][$matchme[3][0]];
-	  } elseif (preg_match_all("/^(.*)\[\"(.*)\"\]$/",$var,$matchme)) { // var["x"]
-	    $rvar = $GLOBALS[$matchme[1][0]][$matchme[2][0]];
-	  } else { // scalar ({var}) is the only thing left
-	    $rvar = $GLOBALS[$var];
-	  }
+          if (preg_match_all("/^(.*)\[\"(.*)\"\]\[\"(.*)\"\]$/",$var,$matchme)) { // var["x"]["y"]
+            $rvar = $GLOBALS[$matchme[1][0]][$matchme[2][0]][$matchme[3][0]];
+          } elseif (preg_match_all("/^(.*)\[\"(.*)\"\]$/",$var,$matchme)) { // var["x"]
+            $rvar = $GLOBALS[$matchme[1][0]][$matchme[2][0]];
+          } else { // scalar ({var}) is the only thing left
+            if ( isset($GLOBALS[$var]) ) $rvar = $GLOBALS[$var];
+          }
         }
       }
       $var  = str_replace("/","\/",$var); // need to addslashes for
@@ -278,8 +280,10 @@ class faq {
       $var  = str_replace(')','\)',$var); // not help here
       $var  = str_replace('[','\[',$var);
       $var  = str_replace(']','\]',$var);
-      $rvar = str_replace("\$","&#36;",$rvar);
-      $content = preg_replace("/\{$var\}/",$rvar,$content);
+      if ( isset($rvar) ) {
+        $rvar = str_replace("\$","&#36;",$rvar);
+        $content = preg_replace("/\{$var\}/",$rvar,$content);
+      }
     }
    }
    if ( preg_match_all("/\*\S+\#/",$content,$matches) ) { // replace translations
@@ -393,7 +397,7 @@ class faq {
    for ($i=0;$i<$lc;++$i) {
      $keywords .= trim($list[$i])."|";
    }
-   $keywords = substr($keywords,0,strlen($sh->keywords)-1).")\b/i";
+   $keywords = substr($keywords,0,strlen($keywords)-1).")\b/i";
    return $keywords;
  }
 

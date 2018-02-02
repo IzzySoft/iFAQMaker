@@ -34,8 +34,8 @@ class htmlfaq extends faq {
   * @param string tpl_file Filename of the template file to use
   * @param string toc style of the "table of contents" (ul|ol), empty for no toc
   */
- function htmlfaq($dir,$file,$toc="") {
-  $this->faq($dir,$file,$toc);
+ public function __construct($dir,$file,$toc="") {
+  parent::__construct($dir,$file,$toc);
  }
 
  /** Make the HTML header
