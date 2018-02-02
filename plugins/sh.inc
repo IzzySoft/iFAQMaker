@@ -22,6 +22,7 @@
  $shfile = "shfile";
 
  #================================================[ setup hilite keywords ]===
+ if ( !isset($sh) ) $sh = new stdClass();
  $sh->keywords    = $faq->regexp_pattern_word_file(dirname(__FILE__)."/sh.keywords");
  $sh->typewords   = $faq->regexp_pattern_word_file(dirname(__FILE__)."/sh.types");
  $sh->commonwords = $faq->regexp_pattern_file(dirname(__FILE__)."/sh.common");

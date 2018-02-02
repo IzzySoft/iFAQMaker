@@ -22,6 +22,7 @@
  $phpfile2 = "phpfile2";
 
  #================================================[ setup hilite keywords ]===
+ if ( !isset($php) ) $php = new stdClass();
  $php->keywords    = $faq->regexp_pattern_word_file(dirname(__FILE__)."/php.keys1");
  $php->keywords2   = $faq->regexp_pattern_word_file(dirname(__FILE__)."/php.keys2");
  $php->typewords   = $faq->regexp_pattern_word_file(dirname(__FILE__)."/php.ctrl");

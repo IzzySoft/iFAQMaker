@@ -20,6 +20,7 @@
  $sqlfile = "sqlfile";
 
  #================================================[ setup hilite keywords ]===
+ if ( !isset($sql) ) $sql = new stdClass();
  $sql->keywords    = $faq->regexp_pattern_word_file(dirname(__FILE__)."/sql.keywords");
  $sql->typewords   = $faq->regexp_pattern_word_file(dirname(__FILE__)."/sql.types");
  $sql->commonwords = $faq->regexp_pattern_file(dirname(__FILE__)."/common.token");
