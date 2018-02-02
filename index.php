@@ -18,7 +18,7 @@ include($fsMacros);
 if (!empty($coll)) $fsFdir .= "$coll/";
 
 #=========================================================[ TOC or Topic? ]===
-if (!file_exists($fsFdir."$topic.$fsFext")) unset($topic);
+if ( !empty($topic) && !file_exists($fsFdir."$topic.$fsFext")) unset($topic);
 if (!isset($topic)) {
   $topic = $default_topic;
   $fsTocStyle = $fsITocStyle;
