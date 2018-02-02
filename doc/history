@@ -3,7 +3,7 @@ $Id$
 History for iFAQMaker
 =====================
 
-v0.1.5
+v0.1.5 (02.02.2018)
 -------------------
 ! variable replacement (single curly braces) no longer interferes with wiki
   block formatting (triple curly braces)
@@ -20,6 +20,10 @@ v0.1.5
   is "origin;translation" (one pair per line), "origin" being the string to
   translate (may NOT contain semicolon), translation being the replacement (may
   contain semicolon or whatever usual characters)
+* enabling wiki mode by default (mainly for the demo to work out-of-the-box)
+* fixing a bunch of PHP notices by explicitly initializing objects and checking
+  whether _REQUEST variables are set
+* constructors upgraded to use __construct (avoiding "deprecated" warnings)
 
 v0.1.4 (19.03.2008)
 -------------------
